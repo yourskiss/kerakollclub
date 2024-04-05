@@ -3,10 +3,11 @@ import LoginComponent from './LoginComponent'
 
 export default function HomeComponent() {
   return (
-    <div>
+    <>
+      <p>test</p>
       <Suspense fallback={<p>...Loading</p>}>
           <LoginComponent />
         </Suspense>
-    </div>
+    </>
   )
 }
