@@ -1,13 +1,24 @@
-import { Suspense } from 'react'
+"use client";
+import { Suspense, useEffect, useState } from 'react'
 import LoginComponent from './LoginComponent'
+import Pageloading from '../shared/PageloadingComponent'
 
 export default function HomeComponent() {
+  const[load,setLoad] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(false);
+    }, 2000);
+  },[]);
+
   return (
     <>
-      <p>test</p>
       <Suspense fallback={<p>...Loading</p>}>
-          <LoginComponent />
-        </Suspense>
+        {
+          load ? <Pageloading /> : <LoginComponent />
+        }
+      </Suspense>
+      
     </>
   )
 }

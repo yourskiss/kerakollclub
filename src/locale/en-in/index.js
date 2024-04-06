@@ -8,11 +8,11 @@ export const registerOptions = {
     },
     firstname: { required: "First name is required" },
     lastname: { required: "Last name is required" },
-    emailaddress: {
-      required: "Email is required",
-      pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "invalid email address" }
-    },
-    gender: { required: "Gender is required" },
+    // emailaddress: {
+    //   required: "Email is required",
+    //   pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "invalid email address" }
+    // },
+    // gender: { required: "Gender is required" },
     state: { required: "State is required" },
     city: { required: "City is required" },
     aadhaarinfo: {
@@ -27,10 +27,10 @@ export const registerOptions = {
     profilepic: { required: "Profile picture is required" },
     firstname: { required: "First name is required" },
     lastname: { required: "Last name is required" },
-    emailaddress: {
-      required: "Email is required",
-      pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Invalid email address" }
-    },
+    // emailaddress: {
+    //   required: "Email is required",
+    //   pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Invalid email address" }
+    // },
     state: { required: "State is required" },
     city: { required: "City is required" },
     aadhaarinfo: {

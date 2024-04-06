@@ -74,9 +74,9 @@ export default function RegisterComponent() {
       firstname: data.firstname,
       lastname: data.lastname,
       fullname: data.firstname + " " + data.lastname,
-      gender: data.gender,
+      gender: '',
       phonenumber: data.mobilenumber,
-      emailaddress:data.emailaddress,
+      emailaddress:'',
       aadhaarinfo: data.aadhaarinfo,
       addressline1: "",
       city: data.city,
@@ -165,24 +165,6 @@ export default function RegisterComponent() {
                   {...register('lastname', registerOptions.lastname)}
                   errors={errors?.lastname && errors.lastname.message} 
                 />
-
-                <InputWrapperComponent
-                  type="text"
-                  name="emailaddress" 
-                  placeholder="Email ID" 
-                  onInput={onInputmaxLength}
-                  maxLength={50} {...register('emailaddress', registerOptions.emailaddress)} 
-                  errors={errors?.emailaddress && errors.emailaddress.message}
-                />
-
-                <div className="registerField">
-                      <select name="gender" className="registerSelect" {...register('gender', registerOptions.gender)}  >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
-                      <span className="registerError">{errors?.gender && errors.gender.message}  </span>
-                </div>
                 
                 <div className="registerField">
                       <select  name="state" className="registerSelect" {...register('state',  registerOptions.state)}  onChange={ e => 

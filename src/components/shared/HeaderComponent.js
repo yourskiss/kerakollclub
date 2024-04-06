@@ -64,7 +64,7 @@ useEffect(() => {
     <>
       <header className={headclass}>
         <aside className="logo">
-          <Image src="/assets/images/logo.png" width={100} height={100} alt="logo" quality={80} />
+          <Image src="/assets/images/logo.png" width={270} height={50} alt="logo" quality={80} />
         </aside>
         <section>
             <Link href="/scanqrcode" className='scanqrcodebuttononheader'><Image src="/assets/images/QR.png" width={100} height={100} alt="qr code" quality={80} /></Link>

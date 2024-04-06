@@ -87,7 +87,6 @@ export default function UpdateprofileComponent() {
             'profilepictureurl': userdata.profilepictureurl,
             'firstname':  userdata.firstname,
             'lastname':  userdata.lastname,
-            'emailaddress': userdata.emailaddress,
             'city':  userdata.city,
             'state':  userdata.state,
             'aadhaarinfo': userdata.aadhaarinfo
@@ -95,12 +94,9 @@ export default function UpdateprofileComponent() {
     }, [data]);
     const validateHandler =(val) =>{
         const error = {};
-        const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         if(val.profilepictureurl===''){error.profilepictureurl = "Profile Picture is required"}
         if(val.firstname===''){error.firstname = "First name is required"}
         if(val.lastname===''){error.lastname = "Last name is required"}
-        if(val.emailaddress===''){error.emailaddress = "Email address is required"}
-        else if(!emailValidation.test(val.emailaddress)){error.emailaddress = "Invalid email address"}
         if(val.state===''){error.state = "State is required"}
         if(val.city===''){error.city = "City is required"}
         if(val.aadhaarinfo===''){error.aadhaarinfo = "Aadhaar number is required"}
@@ -128,9 +124,9 @@ export default function UpdateprofileComponent() {
             firstname: formValue.firstname,
             lastname: formValue.lastname,
             fullname: formValue.firstname + " " + formValue.lastname,
-            gender: "Male",
+            gender: "",
             phonenumber: userMobile,
-            emailaddress: formValue.emailaddress,
+            emailaddress: "",
             aadhaarinfo: formValue.aadhaarinfo,
             addressline1: "",
             city: cityname,
@@ -216,19 +212,7 @@ export default function UpdateprofileComponent() {
                     />
                    <span className="registerError">{formError.lastname  ?  formError.lastname : '' }</span>
                 </div>
-
-                <div className="registerField">
-                    <input
-                        type="text"
-                        name="emailaddress"
-                        placeholder="Email ID"
-                        maxLength={50}
-                        onInput={onInputmaxLength}
-                        value={ formValue.emailaddress || ''  }
-                        onChange={onChangeField}
-                    />
-                    <span className="registerError">{formError.emailaddress  ?  formError.emailaddress : '' }</span>
-                </div>
+ 
 
                 <div className="registerField">
                       <select 

@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image'
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
 import {  isUserToken } from "@/config/userauth";
