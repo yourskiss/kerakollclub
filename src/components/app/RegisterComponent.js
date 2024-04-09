@@ -129,6 +129,7 @@ export default function RegisterComponent() {
       <div className="screencontainer">
         <form onSubmit={handleSubmit(handleRegistration, handleError)}>
           <div className="registercontainer">
+            <div className="registerSmallHead">SIGN UP</div>
             <div className="registerHead">Setup your profile</div>
             <ImageCropperWithPreview filePath={getFilePath} />
 
@@ -140,7 +141,7 @@ export default function RegisterComponent() {
               <InputWrapperComponent
                   type="number"
                   name="mobilenumber"
-                  placeholder="Mobile Number"
+                  labeltext="Mobile Number"
                   maxLength={10}
                   onInput={onInputmaxLength}
                   {...register('mobilenumber', registerOptions.mobilenumber)}
@@ -150,7 +151,7 @@ export default function RegisterComponent() {
               <InputWrapperComponent
                   type="text"
                   name="firstname"
-                  placeholder="First Name"
+                  labeltext="First Name"
                   maxLength={20}
                   onInput={onInputmaxLength}
                   {...register('firstname', registerOptions.firstname)}
@@ -159,7 +160,7 @@ export default function RegisterComponent() {
                 <InputWrapperComponent
                   type="text"
                   name="lastname"
-                  placeholder="Last Name"
+                  labeltext="Last Name"
                   maxLength={20}
                   onInput={onInputmaxLength}
                   {...register('lastname', registerOptions.lastname)}
@@ -167,24 +168,27 @@ export default function RegisterComponent() {
                 />
                 
                 <div className="registerField">
+                      <div className="registertext">Select State <small>*</small></div>
                       <select  name="state" className="registerSelect" {...register('state',  registerOptions.state)}  onChange={ e => 
                         { setStatename(e.target.value);  setStateID(e.target.options[e.target.selectedIndex].title); } }> 
-                        <option value="" title="">Select State</option>
+                        <option value="" title=""></option>
                          {
                             stateList.map((val) => <option value={val.name} title={val.id} key={val.id}>{val.name}</option>)
                          }
                       </select>
-                      <span className="registerError">{errors?.state && errors.state.message} </span>
+                      { errors?.state && <span className="registerError"> {errors.state.message}</span> }
+                      <div className="registerLineText">Enter State name to pick nearby City</div>
                 </div>
                 { stateID !== '' ? 
                 <div className="registerField">
+                      <div className="registertext">Select City <small>*</small></div>
                       <select name="city" className="registerSelect" {...register('city', registerOptions.city)}>
-                        <option value="">Select City</option>
+                        <option value=""></option>
                          {
                             cityList.map((val) => <option value={val.name} key={val.id}>{val.name}</option>)
                          }  
                       </select>
-                      <span className="registerError">{errors?.city && errors.city.message} </span>
+                      { errors?.city && <span className="registerError">{errors.city.message}</span> }
                 </div>
                 : null }
 
@@ -192,13 +196,13 @@ export default function RegisterComponent() {
                 <InputWrapperComponent
                   type="number"
                   name="aadhaarinfo"
-                  placeholder="Aadhaar Number"
+                  labeltext="Aadhaar Number"
                   maxLength={12}
                   onInput={onInputmaxLength}
                   {...register('aadhaarinfo', registerOptions.aadhaarinfo)}
                   errors={errors?.aadhaarinfo && errors.aadhaarinfo.message} 
                 />
-                <p>Profile details should match with Aadhaar</p>
+                <div className="registerLineText">Profile details should match with Aadhaar</div>
 
  
                 <div className="registerSubmit">

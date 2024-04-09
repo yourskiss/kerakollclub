@@ -34,7 +34,7 @@ export default function ImageCropperWithPreview({picvalue, filePath})
         <div className="registerPhotoField">
           <input type="file" id="registerphoto" accept=".jpg, .jpeg, .png" onChange={onChange} />
           <label htmlFor="registerphoto"><img src={ cropData || picvalue } alt="cropped" /></label>
-          <span className="register_photo_name">Change Profile Picture</span>
+          <span className="registertext registertextcenter">Change Profile Picture</span>
         </div>
 
       { image ?

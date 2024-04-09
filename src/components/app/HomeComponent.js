@@ -8,7 +8,7 @@ export default function HomeComponent() {
   useEffect(() => {
     setTimeout(() => {
       setLoad(false);
-    }, 2000);
+    }, 1000);
   },[]);
 
   return (

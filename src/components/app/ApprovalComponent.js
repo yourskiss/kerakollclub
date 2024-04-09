@@ -23,18 +23,15 @@ export default function ApprovalComponent() {
     useEffect(() => {
         if (typeof localStorage !== 'undefined') 
         {
-            const un = localStorage.getItem('userprofilename');
-            const ud = localStorage.getItem('userprofilepic');
-            setUsername(un);
-            setUserdp(ud);
+            setUsername(localStorage.getItem('userprofilename'));
+            setUserdp(localStorage.getItem('userprofilepic'));
         } 
         else
         {
             setUsername('Demmy Account');
             setUserdp('/assets/images/profile/dp.png');
         }
-        
-    }, [username, userdp]);
+    }, []);
 
  
 
@@ -54,21 +51,19 @@ export default function ApprovalComponent() {
         <div className="screencontainer">
                 <div className="approvalcontainer">
                         <dl>
-                            
                             <dt>
                                 <aside><img src={userdp}  alt="product"  /></aside>
                             </dt>
                             <dd>
                                 <p>
-                                    <span>{username} </span>,
-                                    <br />
-                                    your request has gone for further approval.
+                                    <span><b>{username}</b>,</span>
+                                    <span>your request has gone for further approval.</span>
                                 </p>
                             </dd>
-                            <div className="registerBottomText">
-                                Back to <Link href="/" className="backtobutton">Sign in</Link>
-                            </div>
-                        </dl>      
+                        </dl>    
+                        <article>
+                            Back to <Link href="/" className="backtobutton">Sign in</Link>
+                        </article>  
                         
                         <section>
                             <h2>PRODUCT CATEGORIES</h2>

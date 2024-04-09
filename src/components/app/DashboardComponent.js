@@ -44,21 +44,25 @@ const DashboardComponent = () => {
           </div>
 
  
-          <div className="dashboard_mid">
-              <h2>
-                  REWARD KERAKOLL AWARDS
-                  <span>you’ve earned your reward points is</span>
-              </h2>
-              <p><CountUp duration={2} start={0}  delay={1}  end={rewardspoints} /> <b>pt</b></p>
+          <div className="dashboard_earned_point">
+                <h2>You’ve earned</h2>
+                <p>
+                    <CountUp duration={2} start={0}  delay={1}  end={rewardspoints} /> 
+                    <em>reward<br />points</em>
+                </p>
           </div>
 
-          <div className="dashboard_double_pro">
-              <aside>
-                   <Link href="/scanqrcode"><Image src="/assets/images/dashboard_double_pro2.png" width={100} height={100} alt="product" quality={100} /></Link>
-              </aside>
-              <aside>
-                  <Image src="/assets/images/dashboard_double_pro1.png" width={100} height={100} alt="product" quality={100} />
-              </aside>
+          <div className="dashboard_content">
+              <section>
+                    <aside><Link href="/scanqrcode"><Image src="/assets/images/dash-qr.png" width={100} height={100} alt="qr" quality={100} /></Link></aside>
+                    <h2>Scan QR Code</h2>
+                    <p>FOR YOUR KERAKOLL PRODUCTS</p>
+              </section>
+              <section>
+                    <aside><Link href="/"><Image src="/assets/images/redeempoints.png" width={99} height={115} alt="redeempoints" quality={100} /></Link></aside>
+                    <h2>Redeem Points</h2>
+                    <p>IN YOUR CLUB WALLET</p>
+              </section>
           </div>
           
       </div>

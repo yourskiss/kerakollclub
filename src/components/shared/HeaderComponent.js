@@ -67,15 +67,15 @@ useEffect(() => {
           <Image src="/assets/images/logo.png" width={270} height={50} alt="logo" quality={80} />
         </aside>
         <section>
-            <Link href="/scanqrcode" className='scanqrcodebuttononheader'><Image src="/assets/images/QR.png" width={100} height={100} alt="qr code" quality={80} /></Link>
-            <aside>
-              <img src={userdp}  alt="profile" onClick={showhidelogout} />
-              {userstatus === "APPROVE" ? <span className='statusapprove'></span> : <span className='statuspending'></span> }
-              
-            </aside>
+            <Link href="/scanqrcode" className='header_scanqrcode'><Image src="/assets/images/QR.png" width={100} height={100} alt="qr" quality={90} /></Link>
+            <span className='header_notification'>
+              <Image src="/assets/images/notification.png" width={100} height={100} alt="notification" quality={90} />
+              {userstatus === "APPROVE" ? <span className='status_approve'></span> : <span className='status_pending'></span> }
+            </span>
+            <aside className='header_userdp'><img src={userdp}  alt="profile" onClick={showhidelogout} /></aside>
             {
               logout === true ?
-              <ul>
+              <ul className='header_menu'>
                   <li>Welcome<br /> <Link href='/dashboard'><b>{username}</b></Link></li>
                   <li><Link href='/update-profile'>Update Profile</Link></li>
                   <li><Link href='/rewards'>Rewards History</Link></li>

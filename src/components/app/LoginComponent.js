@@ -202,30 +202,31 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    setLoading(true);
-      axios({
-         url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
-         method: "GET",
-         headers: { 'authorization': 'Bearer '+ setBT },
-      }).then((res) => {
-        setLoading(false);
-       // console.log("Verify OTP - ", res);
-        if(res.data.isOTPVerified)
-        {
-          toast.success("OTP Successfully Verify");
-          setOTPVerified(res.data.isOTPVerified);
-        }
-        else
-        {
-          toast.error(res.data.reason);
-          setOtpValues('');
-          setIsOTP(false);
-          setOTPVerified(false);
-        }
-      }).catch((err) => {
-        toast.error(err.message);
-        setLoading(false); 
-      });
+    setOTPVerified(true);
+    // setLoading(true);
+    //   axios({
+    //      url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
+    //      method: "GET",
+    //      headers: { 'authorization': 'Bearer '+ setBT },
+    //   }).then((res) => {
+    //     setLoading(false);
+    //    // console.log("Verify OTP - ", res);
+    //     if(res.data.isOTPVerified)
+    //     {
+    //       toast.success("OTP Successfully Verify");
+    //       setOTPVerified(res.data.isOTPVerified);
+    //     }
+    //     else
+    //     {
+    //       toast.error(res.data.reason);
+    //       setOtpValues('');
+    //       setIsOTP(false);
+    //       setOTPVerified(false);
+    //     }
+    //   }).catch((err) => {
+    //     toast.error(err.message);
+    //     setLoading(false); 
+    //   });
   }
 
 
@@ -237,26 +238,35 @@ export default function LoginComponent() {
     <section className="screencontainer">
 
 
-          <div className="registerHead">Welcome! Sign in here  </div>
-          <div className="registercontainer">
+          
+          
+          
+          { !isDisabled ? (<div className="registercontainer">
+              <div className="registerHead">Welcome!</div>
               <div className="registerField">
-                <input  type="number" name="mobile" placeholder="Mobile number" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
+                <div className="registertext">Enter mobile number *</div>
+                <input  type="number" name="mobile" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
                 <span className='registerError'>{ mobileError }</span> 
-                { isDisabled ? <em className="numberedit" onClick={changeNumber}>Change</em> : null }
               </div>
-          </div>
- 
+              </div>) : null }
+          
+          
 
         { mobileError === '' && isMobile ? (
         <>
             <div className="registercontainer">
-              <div className="registerMsgOtp">Enter OTP </div>
+              <diva className="registerHead">Verify with OTP</diva>
+              <div className="registerMsgOtp">
+                <b>We have sent an OTP to 91+ </b>
+                <span>{mobileValues}</span>
+                <em className="numberedit" onClick={changeNumber}>Change</em>
+              </div>
               <div className="registerOtp">
                 <div><aside>
                   <input type="number" name="otpnumber" maxLength={6} minLength={6}  value={otpValues} onChange={otpChange}  onInput={onInputmaxLength} />
                 </aside></div> 
               </div>
-              <span className='registerError registerErrorCenter'> { otpError }</span>  
+              <span className='registerError'> { otpError }</span>  
               {
                 !otpsent ? (<div className="registerOtpText">Resend OTP in  <Otpcountdown expiryTimestamp={otpcountertime} onSuccess={getOtpTimer} /> Seconds </div>) : (<div className="registerOtpText">Not reveived?  <span onClick={resendotp}>Resend OTP</span></div>)
               }
@@ -267,7 +277,7 @@ export default function LoginComponent() {
             <div className="registerSubmit">
               { 
                 !isMobile && !isOTP ?
-                (<button className="register_button" onClick={mobileSubmit}>Sign In</button>) 
+                (<button className="register_button" onClick={mobileSubmit}>SEND OTP</button>) 
                 :
                 (<button className="register_button" onClick={otpSubmit}>Sign In</button>)
               }
@@ -275,9 +285,7 @@ export default function LoginComponent() {
 
  
       
-        <div className="registerBottomText">
-          Do not have account   <Link href='/register'>Sign Up</Link>
-        </div>
+        <div className="registerBottomText">Haven’t signed up yet? <Link href='/register'>Sign Up</Link></div>
     </section>
     </div>
 
