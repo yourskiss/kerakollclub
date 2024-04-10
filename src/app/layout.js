@@ -8,6 +8,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Starfield from 'react-starfield';
 
 export const metadata = {
   title: "kerakoll app",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       {/* <body className={inter.className}> */}
       <body  className={arialmt.className}>
         <main className="main">
+          <Starfield starCount={1000} starColor={[255, 255, 255]} speedFactor={0.05} />
           <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored"  />
           {children}
         </main>

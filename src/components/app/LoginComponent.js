@@ -202,31 +202,31 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    setOTPVerified(true);
-    // setLoading(true);
-    //   axios({
-    //      url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
-    //      method: "GET",
-    //      headers: { 'authorization': 'Bearer '+ setBT },
-    //   }).then((res) => {
-    //     setLoading(false);
-    //    // console.log("Verify OTP - ", res);
-    //     if(res.data.isOTPVerified)
-    //     {
-    //       toast.success("OTP Successfully Verify");
-    //       setOTPVerified(res.data.isOTPVerified);
-    //     }
-    //     else
-    //     {
-    //       toast.error(res.data.reason);
-    //       setOtpValues('');
-    //       setIsOTP(false);
-    //       setOTPVerified(false);
-    //     }
-    //   }).catch((err) => {
-    //     toast.error(err.message);
-    //     setLoading(false); 
-    //   });
+    // setOTPVerified(true); // tesing
+    setLoading(true);
+      axios({
+         url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
+         method: "GET",
+         headers: { 'authorization': 'Bearer '+ setBT },
+      }).then((res) => {
+        setLoading(false);
+       // console.log("Verify OTP - ", res);
+        if(res.data.isOTPVerified)
+        {
+          toast.success("OTP Successfully Verify");
+          setOTPVerified(res.data.isOTPVerified);
+        }
+        else
+        {
+          toast.error(res.data.reason);
+          setOtpValues('');
+          setIsOTP(false);
+          setOTPVerified(false);
+        }
+      }).catch((err) => {
+        toast.error(err.message);
+        setLoading(false); 
+      });
   }
 
 
@@ -255,7 +255,7 @@ export default function LoginComponent() {
         { mobileError === '' && isMobile ? (
         <>
             <div className="registercontainer">
-              <diva className="registerHead">Verify with OTP</diva>
+              <div className="registerHead">Verify with OTP</div>
               <div className="registerMsgOtp">
                 <b>We have sent an OTP to 91+ </b>
                 <span>{mobileValues}</span>
