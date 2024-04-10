@@ -100,8 +100,9 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 /* ################### screen ################### */
 .main { display: flow-root; background-color:#191919; width:100%; max-width:1024px; margin: 0 auto; float: none; }
 .screenmain { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; min-height:100vh; float: left; background-color: #191919; padding:120px 3rem 3rem 3rem; box-sizing: border-box; }
-.screenmain.screendashboard { background-color:transparent;  background: url('../images/dashboard-bg.png') no-repeat center top; background-size:100% 70%;  }
-.screenmain.screendashboardbottom { padding-top: 0 !important; }
+.screenmain.screendashboard { min-height: auto; background-color:transparent;  background: url('../images/dashboard-bg.png') no-repeat center top; background-size:100% 70%;  }
+.screenmain.screendashboardbottom { padding-top: 0 !important; min-height: auto; }
+.screenmain.screenqrcode { position: relative; padding-top: 0 !important; padding-bottom: 150px !important; background-color:transparent;  background-image:url('../images/scanbg.png'), url('../images/scan_qr_bg.png'); background-repeat:no-repeat, no-repeat; background-position: center bottom, center -50px; background-size:100% auto, 100% auto; }
 .screencontainer { width: 100%; height: auto; float: left; }
 
 
@@ -115,14 +116,16 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .headersection.headerinner section { display: flex; justify-content:flex-end; align-items: center; }
 .header_userdp { cursor: pointer; position: relative; display: inline-block; width:80px; height: 80px; border-radius: 50%; background-color: #afcdaf; margin: 0; padding:0.2rem; border: none;  }
 .header_userdp img { float: left; width: 100%; height:97%; border: solid 2px #fff; border-radius: 50%; margin: 0;padding: 0; }
-.header_scanqrcode { text-decoration: none; cursor: pointer; display: inline-block; width:40px; height: auto; border-radius: 0; background: none; margin: 0 2rem 0 0; padding:0; border:0; overflow: hidden; }
+.header_scanqrcode { text-decoration: none; cursor: pointer; display: inline-block; width:40px; height: auto; border-radius: 0; background: none; margin: 0 2rem 0 0; padding:0; border:0; overflow: hidden; transition: all 0.5s ease-out; }
+.header_scanqrcode:hover {  transform: scale(1.1); transition: all 0.5s ease-in; }
 .header_scanqrcode img { float: left; width: 100%; height:auto; border: 0; border-radius: 0; margin: 0;padding: 0; }
-.header_notification { cursor: pointer;  position: relative; text-decoration: none; cursor: pointer; display: inline-block; width:25px; height: auto; border-radius:0; background: none; margin: 0 2rem 0 0; padding:0; border:0;  }
-.header_notification img { float: left; width: 100%; height:auto; border: 0; border-radius: 0; margin: 0;padding: 0; }
+.header_notification { cursor: pointer;  position: relative; text-decoration: none; cursor: pointer; display: inline-block; width:25px; height: auto; border-radius:0; background: none; margin: 0 2rem 0 0; padding:0; border:0; }
+.header_notification img { float: left; width: 100%; height:auto; border: 0; border-radius: 0; margin: 0;padding: 0;  transition: all 0.5s ease-out; }
+.header_notification img:hover { filter: brightness(0) invert(1); transition: all 0.5s ease-in; }
 .header_notification span { z-index: 1; position: absolute; top:-4px; right:-4px;width: 14px; height: 14px;border-radius: 50%; background:transparent;text-align: center;line-height: 20px;font-size: 10px; }
 .header_notification span.status_approve { background: #AFCDAF; }
 .header_notification span.status_pending { background: #ff0303; }
-.header_menu  { display: block; z-index: 5; position: absolute; top: 110%; right: 0; background: #afcdaf; padding:0; width:150px; box-shadow: 0px 3px 12px rgb(0 0 0 / 8%); box-sizing:border-box; }
+.header_menu  { display: block; z-index: 5; position: absolute; top: 110%; right: 0; background: #afcdaf; padding:0; width:150px; box-shadow: 0px 3px 12px rgb(0 0 0 / 8%); box-sizing:border-box; transition: all 0.5s ease-in-out; }
 .header_menu:after { z-index:2; position:absolute; right: 20%; top:-13px; content: "\f0d8"; font-family:'FontAwesome'; color: #afcdaf; line-height:1; font-weight:400; font-size:20px; }
 .header_menu li { list-style: none; width: 100%; float: left; padding:10px; margin: 0;  border: none;   border-top: solid 1px #fff; background:transparent;text-decoration: none; border-radius: 0; box-sizing: border-box;   text-align: center; font-size: 16px; color: #414141; }
 .header_menu li:first-child { border-top: none;}
@@ -235,7 +238,6 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .dashboard_slider .slick-dots li {position: relative;margin: 0 15px 0 0;padding: 0;border: solid 2px #F5F0EB;width:50px;height:12px;background:#191919;border-radius:15px;cursor: pointer;  }
 .dashboard_slider .slick-dots li button { display: none;  }
 .dashboard_slider .slick-dots li.slick-active {  background: #AFCDAF;  }
-
 .dashboard_earned_point { width: 100%; float: left; margin:2rem 0 4rem 0; padding: 0;  box-sizing: border-box;}
 .dashboard_earned_point h2 { margin:0 0 1rem 0; padding: 0; width: 100%; float: left; text-align: left;  box-sizing: border-box; text-transform: none; font-weight: 500;color: #fff; font-size: 30px;  }
 .dashboard_earned_point p {  display: flex; justify-content:flex-start; align-items: flex-start; flex-direction: column; width: auto; float: left; margin:0; padding: 0;  box-sizing: border-box;  text-transform: none;  }
@@ -248,7 +250,6 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
   90% {   transform:scale(1); opacity: 0.3; }
   100% {   transform:scale(1); opacity: 0.3; }
 }
-
 .dashboard_content  { width: 100%; float: left; margin:0 0 3rem 0; padding: 0;  box-sizing: border-box; display: flex; justify-content: space-between; align-items: stretch; }
 .dashboard_content section  { width: 48%; float: left; margin:0; padding:3rem 1rem;  box-sizing: border-box; border: solid 2px #F5F0EB; background-color:#191919; }
 .dashboard_content section.dashboard_redeempointbg { background:#191919 url('../images/redeempointbg.png') no-repeat; background-position: top -1rem center; background-size: 80% auto;  }
@@ -267,40 +268,67 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 
 /* ################### qr code reader ################### */
-.qr-reader { z-index: 2; width: 100%; max-width: 1024px; height:100vh; background-color: #afcdaf; margin: 0 auto; position: fixed; left: 50%;  bottom:0; transform: translateX(-50%); }
+.scanqrcodesection  { width: 100%; float: left; margin:0; padding:3rem 0 0 0; text-align: center; }
+.scanqrcodesection h2 {  width: 100%; float: left; margin:0 0 3rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: 500;color: #fff; font-size: 30px;  }
+.qr-reader { display: inline-block; float:none; margin: 0 auto; width: 95%; max-width: 450px; height:450px; background-color: #afcdaf; z-index: 2; position: relative; left:0;  top:0;  }
 .qr-reader video { width: 100%;  height: 100%;  object-fit: cover;}
-.qr-reader section {  width: 100% !important;  left: 0 !important; float: left; }
+.qr-reader section {  width: 100% !important; height: 100% !important;  left: 0 !important; top: 0 !important; float: left; }
 .qr-reader .close-qr-reader { z-index:4; position: absolute; right: 1rem; top: 1rem; height: 40px; width: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; background-color: #414141; font-size:22px; cursor: pointer; color:#fff; text-decoration: none; }
 .qr-reader .close-qr-reader:hover { background-color: #afcdaf;  color:#414141;  }
-.qr-reader .qr-frame {  z-index: 3; position: absolute; left: 50%;  top: 50%;  transform: translate(-50%, -50%);}
+.qr-reader .qr-frame {  z-index: 3; position: absolute; left:0;  top: 0;  transform:none; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; }
+
 
 /* ################### qr container ################### */
 .scanqrcodecontainer  { width: 100%; float: left; margin:1rem 0; padding: 0; }
-.scanqrcodecontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #414141; font-size:24px;   }
-.scanqrcodecontainer h2 span { margin-top: 0.3rem; display: block; font-weight: normal; color: #919191; font-size:16px;    }
+.scanqrcodecontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #fff; font-size:24px;   }
+.scanqrcodecontainer h2 span { margin-top: 0.3rem; display: block; font-weight: normal; color: #fff; font-size:18px;    }
 .scanqrcodecontainer ul { width: 100%; float: left; margin:1rem 0 2rem 0; padding:0; display: flex; justify-content: center; align-items: stretch; flex-wrap: wrap;  }
-.scanqrcodecontainer ul li { list-style: none; width: 50%; float: left; margin:0; box-sizing: border-box; text-align: center; border: solid 1px #eee; background: #fff;padding: 1rem; font-weight: 500; color: #414141; font-size:16px;  }
+.scanqrcodecontainer ul li { list-style: none; width: 50%; float: left; margin:0; box-sizing: border-box; text-align: center; border: solid 1px #eee; background: #fff;padding: 1rem; font-weight: 500; color: #414141; font-size:18px;  }
 .scanqrcodeForm { display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: 90%; max-width: 500px; float: none; margin:0 auto; padding:0; box-sizing: border-box; }
-.scanqrcodeForm button { display: inline-block; width:auto; cursor: pointer; float: none; margin:0 auto;  padding:0.8rem 1.5rem;  box-sizing: border-box; background-color: #afcdaf; border: none; text-align: center; font-weight: 500; color: #414141; font-size:16px; } 
-.scanqrcodeForm button:hover { background-color: #414141; color: #fff; }
+.scanqrcodeForm button { display: inline-block; width:auto; cursor: pointer; float: none; margin:0 auto;  padding:0.8rem 1.5rem;  box-sizing: border-box; background-color: #afcdaf; border: none; text-align: center; font-weight: 500; color: #414141; font-size:18px; } 
+.scanqrcodeForm button:hover { background-color: #fff; color: #414141; }
+
 
 /* ################### rewardscontainer ################### */
 .rewardscontainer { width: 100%; float: left; margin:2rem 0 0 0; padding: 0; }
-.rewardscontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #414141; font-size:24px;   }
-.rewardscontainer h3 { width: 100%; float: left; margin:0; padding:0.5rem 0 1.5rem 0; text-align: center;  font-weight: 500; color: #949494; font-size:16px;   }
-.rewardscontainer h3 span {  font-weight: bold; color: #afcdaf; }
+.rewardscontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #fff; font-size:24px;   }
+.rewardscontainer h3 { width: 100%; float: left; margin:0; padding:0.5rem 0 1.5rem 0; text-align: center;  font-weight: 500; color: #afcdaf; font-size:18px;   }
+.rewardscontainer h3 span {  font-weight: bold; }
 .rewardscontainer ul { width: 100%; float: left; margin:0; padding:0;  }
 .rewardscontainer ul li { list-style: none; width: 100%; float: left; margin:0; box-sizing: border-box; display: flex; justify-content:flex-start; align-items: center; }
 .rewardscontainer ul li:nth-child(odd) { background-color: #dfdfdf; }
 .rewardscontainer ul li:nth-child(even) { background-color: #fff; }
 .rewardscontainer ul li:first-child { background-color: #afcdaf; }
-.rewardscontainer ul li p {  float: left; margin:0; padding:0;  padding:0.5rem; box-sizing: border-box; text-align: center; font-weight: 500; color: #414141; font-size:14px; }
+.rewardscontainer ul li p {  float: left; margin:0; padding:0;  padding:1rem 0.5rem; box-sizing: border-box; text-align: center; font-weight: 500; color: #414141; font-size:16px; }
 .rewardscontainer ul li p:first-child { width: 15%; }
 .rewardscontainer ul li p:nth-of-type(2) { width: 30%; }
 .rewardscontainer ul li p:nth-of-type(3) { width: 35%; }
 .rewardscontainer ul li p:last-child { width: 20%; }
 .rewardscontainer ul li p b { color: #000;  }
 .rewardscontainer .norewardsavailable { width: 100%; float: left; margin:0; padding:2rem 0; text-align: center;  font-weight: 500;color: #D40000; font-size: 30px;   }
+
+/* ################### screenqrbottom ################### */
+.screenqrbottom { position:absolute; left:5%; bottom:2rem; width: 90%; float: left; margin:0; padding: 0; display: flex; justify-content: space-between; align-items: center; }
+.screenqrbottom h2 {  width:auto; float: left; margin:0; padding: 0; text-align: left;  text-transform: none; }
+.screenqrbottom h2 em { margin-bottom: 0.7rem; display: block; font-weight: 500; color:#fff; font-size:18px; font-style: normal; }
+.screenqrbottom h2 span { font-weight: bold; color:#F5F0EB; font-size:42px;  }
+.screenqrbottom p {  width: auto; float: left; text-align: right; margin:0; padding: 0; text-align: center;  text-transform: none; }
+.screenqrbottom p a{ display: inline-block; width:auto; cursor: pointer; float: none; margin:0 auto;  padding:0.7rem 1.5rem;  box-sizing: border-box; background-color: transparent; border: solid 1px #F5F0EB; border-radius: 25px; text-align: center; text-decoration: none; font-weight: 500; color:#F5F0EB; line-height: 1; font-size:18px; transition: all 0.5s ease-out; } 
+.screenqrbottom p a:hover { background-color: #AFCDAF; border-color: #AFCDAF; color: #414141;  transition: all 0.5s ease-in;  }
+
+
+/* ################### earnepoints ################### */
+.earnepoints_content {  width: 100%; float: left; margin:300px 0 0 0; padding: 0; }
+.earnepoints_content h2 { display: block; width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #AFCDAF; font-size:42px; }
+.earnepoints_content h3 { display: block; width: 100%; float: left; margin:0; padding:0.5rem 0 0 0; text-align: center;  font-weight: 500; color: #fff; font-size:27px; }
+.earnepoints_content h4 { display: block; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center;  font-weight: bold; color: #fff; font-size:100px; }
+.earnepoints_content h5 { display: block; width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color:#AFCDAF; font-size:60px; }
+.earnepoints_scan { width: 100%; float: left; margin:150px 0 1rem 0; padding: 0; }
+.earnepoints_scan aside { width: 100%; float: left; text-align: center;  }
+.earnepoints_scan aside a { text-decoration: none; }
+.earnepoints_scan aside a img { background-color: #696969; padding:1rem; border: 0; width: 110px; height: 110px; margin: 0 auto; display: inline-block; float: none; float: none;  transform:scale(1); transition: all 0.5s ease-out;  }
+.earnepoints_scan aside a:hover img { transform:scale(1.1); transition: all 0.5s ease-in; }
+.earnepoints_scan p { display: block; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center;  font-weight: 500; color: #fff; font-size:24px;   }
 
 
 @media only screen and (max-width:1023px)
@@ -317,7 +345,10 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 @media only screen and (max-width:767px)
 {
-
+/* ################### earnepoints ################### */
+.earnepoints_content {   margin:200px 0 0 0;   }
+.earnepoints_scan { margin:150px 0 1rem 0; }
+ 
 }
 
 
@@ -349,6 +380,51 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .approvalcontainer section h2 { font-size: 20px; }
 .approvalcontainer section h3 { margin:1rem 0 2rem 0;  font-size: 24px;  }
 .pc_item p {  bottom:12%; font-size:30px; }
+
+
+
+/* ################### dashboard ################### */
+.dashboard_products h2 {  font-size:24px;  }
+.dashboard_slider { padding: 0 0 2rem 0;  }
+.db_item h2 span { font-size:20px;  }
+.db_item h2 img { width:27px; margin-left:0.5rem;   }
+.dashboard_slider .slick-dots li {margin: 0 10px 0 0; border-width:1px;width:40px;height:9px; }
+.dashboard_earned_point { margin:2rem 0 3rem 0;  }
+.dashboard_earned_point h2 {  font-size: 24px;  }
+.dashboard_earned_point p span { font-size:80px;  }
+.dashboard_earned_point p em { margin-left:1rem; margin-top: 0.2rem;  font-size:18px; }
+.dashboard_earned_point p img { margin-top:-0.3rem; width:30px; }
+.dashboard_content  {  margin:0 0 2rem 0;  }
+.dashboard_content section  { width: 49%; padding:1rem 0.5rem;  border-width:1px;  }
+.dashboard_content section.dashboard_redeempointbg { background-position: top -1rem center; background-size: 80% auto;  }
+.dashboard_content aside { margin:1rem 0 0 0; }
+.dashboard_content aside img {margin-top: 0;}
+.dashboard_content aside img.dashboard_scan_img { padding:0.5rem; border-width:0.5rem; }
+.dashboard_content h5 {  margin:1rem 0 0 0;  }
+.dashboard_content h5 span { font-size:42px;  }
+.dashboard_content h5 em { font-size:16px;  }
+.dashboard_content h2 {   margin:2rem 0 0 0;   font-size: 20px;  }
+.dashboard_content section.dashboard_redeempointbg h2 { margin:1rem 0 0 0; }
+.dashboard_content p { margin:1rem 0 0 0; font-size: 14px;  }
+
+/* ################### screenqrbottom ################### */
+.screenqrbottom { left:5%; bottom:2rem; width: 90%; }
+.screenqrbottom h2 em { font-size:14px;  }
+.screenqrbottom h2 span { font-size:24px;  }
+.screenqrbottom p a{  font-size:14px; padding: 0.6rem 1rem; } 
+ 
+
+
+/* ################### earnepoints ################### */
+.earnepoints_content {  margin:70px 0 0 0;  }
+.earnepoints_content h2 {  font-size:24px; }
+.earnepoints_content h3 {  font-size:18px; }
+.earnepoints_content h4 { font-size:66px; }
+.earnepoints_content h5 {  font-size:36px; }
+.earnepoints_scan { margin:50px 0 1rem 0;  }
+.earnepoints_scan aside a img { padding:0.5rem; width: 90px; height:90px; }
+.earnepoints_scan p {  font-size:18px;   }
+
 
 }
 

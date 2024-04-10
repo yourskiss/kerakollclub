@@ -3,12 +3,14 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import QrReader from '../core/QrReader';
-import HeaderComponent from '../shared/HeaderComponent';
 import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
 import { setBearerToken } from "@/config/beararauth";
 import Loader from "../shared/LoaderComponent";
 import { ipaddress, osdetails, browserdetails, geoLatitude, geoLongitude } from "../core/jio";
 import { toast } from 'react-toastify';
+import Link from 'next/link';
+import CountUp from 'react-countup';
+import TotalrewardpointsComponent from '../shared/TotalrewardpointsComponent';
 
 export default function ScanqrcodeComponent() {
   const [loading, setLoading] = useState(false);
@@ -25,7 +27,7 @@ export default function ScanqrcodeComponent() {
   const ipInfo = ipaddress();
   const osInfo = osdetails();
   const browserInfo = browserdetails();
-
+  const rewardspoints = TotalrewardpointsComponent();
  
  
   useEffect(() => {
@@ -72,7 +74,7 @@ export default function ScanqrcodeComponent() {
           data: qrdata,
         }).then((res) => {
           setLoading(false);
-          // console.log(res)
+          console.log(res)
           if(res.data.result === null)
           {
             toast.error(res.data.resultmessage);
@@ -80,8 +82,9 @@ export default function ScanqrcodeComponent() {
            } 
            else
            {
+            sessionStorage.setItem("pointid", res.data.result[0].pointid);
             toast.success('Coupon Successfully Verify and Added');
-            push("/rewards");
+            push("/earnedpoint");
            }
         }).catch((err) => {
           setLoading(false); 
@@ -101,33 +104,41 @@ export default function ScanqrcodeComponent() {
 
   return (
     <>
-      <HeaderComponent />
-      <div className="screenmain" > 
+      <div className="screenmain screenqrcode" > 
         <div className="screencontainer">
-
-          <div className="scanqrcodecontainer">
-            <h2>Scan Data  <span>({scandata})</span> </h2>
-            <ul>
-              <li>Latitude: {latInfo}</li>
-              <li>Longitude: {lonInfo}</li>
-              <li>IP Address: {ipInfo}</li>
-              <li>OS Details: {osInfo}</li>
-              <li>Browser Details: {browserInfo}</li>
-              <li>Coupone Code: {couponecode}</li>
-            </ul>
-            <form className="scanqrcodeForm" onSubmit={handleSubmitCode} >
-                <button>Validate and Save Coupon</button>
-            </form>
-          </div>
- 
-          
+          { 
+            !qrcode ? <div className="scanqrcodecontainer">
+              <h2>Scan Data  <span>({scandata})</span> </h2>
+              <ul>
+                <li>Latitude: {latInfo}</li>
+                <li>Longitude: {lonInfo}</li>
+                <li>IP Address: {ipInfo}</li>
+                <li>OS Details: {osInfo}</li>
+                <li>Browser Details: {browserInfo}</li>
+                <li>Coupone Code: {couponecode}</li>
+              </ul>
+              <form className="scanqrcodeForm" onSubmit={handleSubmitCode} >
+                  <button>Validate and Save Coupon</button>
+              </form>
+            </div>
+            : <div className="scanqrcodesection"><h2>Scan QR code <br /> and win rewards</h2><QrReader onData={handalqrisvailable} onSuccess={getData} /></div>
+          }
         </div>
+
+
+          <div className="screenqrbottom">
+            <h2>
+              <em>CLUB WALLET</em>
+              <CountUp duration={2} start={0}  delay={1}  end={rewardspoints} /> <span>PTS</span>
+            </h2>
+            <p><Link href='/rewards'>view points</Link></p>
+          </div>
+
+
       </div> 
-
-      { qrcode ? <QrReader onData={handalqrisvailable} onSuccess={getData} /> : "" }
-
  
 
+      
       { loading ? <Loader /> : null }
     </>
   )

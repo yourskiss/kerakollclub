@@ -188,10 +188,10 @@ export default function UpdateprofileComponent() {
                 </div>
                 
                 <div className="registerField">
+                    <div className="registertext">First name <small>*</small></div>
                     <input
                         type="text"
                         name="firstname"
-                        placeholder="First name"
                         maxLength={25}
                         onInput={onInputmaxLength}
                         value={ formValue.firstname  || ''  }
@@ -201,10 +201,10 @@ export default function UpdateprofileComponent() {
                 </div>
 
                 <div className="registerField">
+                    <div className="registertext">Last name <small>*</small></div>
                     <input
                         type="text"
                         name="lastname"
-                        placeholder="Last name"
                         maxLength={25}
                         onInput={onInputmaxLength}
                         value={ formValue.lastname  || ''  }
@@ -215,6 +215,7 @@ export default function UpdateprofileComponent() {
  
 
                 <div className="registerField">
+                        <div className="registertext">Select State <small>*</small></div>
                       <select 
                         name="state" 
                         className="registerSelect" 
@@ -231,6 +232,7 @@ export default function UpdateprofileComponent() {
                 
                 { stateID !== '' ? 
                 <div className="registerField">
+                        <div className="registertext">Select City <small>*</small></div>
                       <select 
                         name="city" 
                         className="registerSelect" 
@@ -248,10 +250,10 @@ export default function UpdateprofileComponent() {
                 
 
                 <div className="registerField">
+                    <div className="registertext">Aadhaar Number <small>*</small></div>
                     <input
                         type="number"
                         name="aadhaarinfo"
-                        placeholder="Aadhaar Number"
                         maxLength={12}
                         onInput={onInputmaxLength}
                         value={ formValue.aadhaarinfo || '' }

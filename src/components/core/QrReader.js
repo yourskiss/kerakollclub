@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import QrScanner from "qr-scanner";
-import Link from "next/link";
+// import Link from "next/link";
 export default function QrReader({onSuccess, onData}) {
     const scanner = useRef();
     const videoEl = useRef(null);
@@ -40,9 +40,9 @@ export default function QrReader({onSuccess, onData}) {
     return (
       <div className="qr-reader">
         <video ref={videoEl}></video>
-        <Link className="close-qr-reader" href='/dashboard'>X</Link>
+        {/* <Link className="close-qr-reader" href='/dashboard'>X</Link> */}
         <section ref={qrBoxEl}>
-          <img src="../assets/images/qr-frame.svg" alt="Qr Frame" height={280} width={280}  className="qr-frame" /> 
+          <img src="../assets/images/qr-frame.png" alt="Qr Frame" height={375} width={375}  className="qr-frame" /> 
         </section>
       </div>
     );

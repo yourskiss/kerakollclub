@@ -202,7 +202,8 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    // setOTPVerified(true); // tesing
+    setOTPVerified(true); // tesing
+    /*
     setLoading(true);
       axios({
          url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
@@ -227,6 +228,7 @@ export default function LoginComponent() {
         toast.error(err.message);
         setLoading(false); 
       });
+      */
   }
 
 
