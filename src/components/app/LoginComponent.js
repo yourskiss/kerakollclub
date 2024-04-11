@@ -204,8 +204,7 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    setOTPVerified(true); // tesing
-    /*
+    // setOTPVerified(true); // tesing
     setLoading(true);
       axios({
          url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
@@ -230,7 +229,6 @@ export default function LoginComponent() {
         toast.error(err.message);
         setLoading(false); 
       });
-      */
   }
 
 
@@ -265,7 +263,7 @@ export default function LoginComponent() {
             <div className="registercontainer">
               <div className="registerHead">Verify with OTP</div>
               <div className="registerMsgOtp">
-                <b>We have sent an OTP to 91+ </b>
+                <b>We have sent an OTP to +91 </b>
                 <span>{mobileValues}</span>
                 <em className="numberedit" onClick={changeNumber}>Change</em>
               </div>
