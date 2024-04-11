@@ -148,14 +148,14 @@ export default function RegistationComponent() {
       osdetails: osInfo,
       browserdetails: browserInfo
     }
-    console.log(datafinal);
+    // console.log(datafinal);
     axios({
           url: process.env.BASE_URL + "Customer/SaveUser",
           method: "POST",
           headers: { 'authorization': 'Bearer '+ setBT  },
           data: datafinal,
       }).then((res) => {
-        console.log(res);
+       // console.log(res);
         setLoading(false);
         localStorage.setItem('userprofilepic',userImg);
         localStorage.setItem('userprofilename',  firstname + " " + lastname);
