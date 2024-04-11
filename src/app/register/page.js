@@ -1,6 +1,8 @@
-import RegisterComponent from "../../components/app/RegisterComponent"
+import RegistationComponent from "@/components/app/RegistationComponent"
+// import RegisterComponent from "../../components/app/RegisterComponent"
 export default function Register() {
     return (
-        <RegisterComponent />
+        // <RegisterComponent />
+        <RegistationComponent />
     )
   }

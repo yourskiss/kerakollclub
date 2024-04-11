@@ -14,8 +14,8 @@ import { setCouponeCode, isCouponeCode } from "@/config/validecoupone";
 import Otpcountdown from "../core/timer";
 
 export default function LoginComponent() {  
-  
     const[loading, setLoading] = useState(false);
+    const [agree, setAgree] = useState(true);
     const [isDisabled, setIsDisabled] = useState(false);
     const [mobileValues, setMobileValues] = useState('');
     const [otpValues, setOtpValues] = useState('');
@@ -63,7 +63,9 @@ export default function LoginComponent() {
   const isUT = isUserToken();
   const isCC = isCouponeCode();
  
-
+  const checkboxHandler = () => {
+    agree === false ? setAgree(true) : setAgree(false);
+  }
   const otpcountertime = new Date();
   otpcountertime.setSeconds(otpcountertime.getSeconds() + 59);  
   const getOtpTimer =(val) =>{ setOtpsent(val); }
@@ -202,8 +204,8 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    //setOTPVerified(true); // tesing
-    
+    setOTPVerified(true); // tesing
+    /*
     setLoading(true);
       axios({
          url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
@@ -228,6 +230,7 @@ export default function LoginComponent() {
         toast.error(err.message);
         setLoading(false); 
       });
+      */
   }
 
 
@@ -247,7 +250,11 @@ export default function LoginComponent() {
               <div className="registerField">
                 <div className="registertext">Enter mobile number *</div>
                 <input  type="number" name="mobile" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
-                <span className='registerError'>{ mobileError }</span> 
+                { mobileError && <span className='registerError'>{mobileError}</span> } 
+              </div>
+              <div className="registerTncAccept">
+                 <input id="accepttnc" type="checkbox" onChange={checkboxHandler}  />
+                 <label htmlFor="accepttnc"><span>Accept Term and Condition</span></label>
               </div>
               </div>) : null }
           
@@ -267,7 +274,7 @@ export default function LoginComponent() {
                   <input type="number" name="otpnumber" maxLength={6} minLength={6}  value={otpValues} onChange={otpChange}  onInput={onInputmaxLength} />
                 </aside></div> 
               </div>
-              <span className='registerError'> { otpError }</span>  
+              { otpError && <span className='registerError'>{otpError}</span>  }
               {
                 !otpsent ? (<div className="registerOtpText">Resend OTP in  <Otpcountdown expiryTimestamp={otpcountertime} onSuccess={getOtpTimer} /> Seconds </div>) : (<div className="registerOtpText">Not reveived?  <span onClick={resendotp}>Resend OTP</span></div>)
               }
@@ -278,7 +285,7 @@ export default function LoginComponent() {
             <div className="registerSubmit">
               { 
                 !isMobile && !isOTP ?
-                (<button className="register_button" onClick={mobileSubmit}>SEND OTP</button>) 
+                (<button disabled={agree} className="register_button" onClick={mobileSubmit}>SEND OTP</button>) 
                 :
                 (<button className="register_button" onClick={otpSubmit}>Sign In</button>)
               }

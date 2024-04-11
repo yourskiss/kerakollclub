@@ -2,7 +2,9 @@
 // const inter = Inter({ subsets: ["latin"] });
 
 import localFont from 'next/font/local';
-const arialmt = localFont({ src: './arialmt.woff2' });
+const arialmt = localFont({ weight: '500', variable: '--font-arialmt', src: './arialmt.woff2' });
+// const lneue = localFont({ weight: 'bold', variable: '--font-lneue', src: './lneue.woff2' });
+
 
 import Script from "next/script";
 import "./globals.css";
@@ -22,7 +24,7 @@ export default function RootLayout({ children }) {
       <meta name="background_color" content="#AFCDAF"/>
       <meta name="theme-color" content="#414141"/>
       {/* <body className={inter.className}> */}
-      <body  className={arialmt.className}>
+      <body className={arialmt.className}>
         <main className="main">
           <Starfield starCount={1000} starColor={[255, 255, 255]} speedFactor={0.05} />
           <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored"  />

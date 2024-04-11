@@ -1,5 +1,6 @@
 *{margin:0;padding:0;box-sizing:border-box; }
 /* @font-face { font-family: 'ArialMT'; src: url('../fonts/arialmt.woff2') format('woff2'); font-weight: normal; font-style: normal;  } */
+/* @font-face { font-family: 'lneue'; src: url('../fonts/lneue.woff2') format('woff2'); font-weight: normal; font-style: normal;  }  */
 html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{ outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
 body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-height:1;font-family: 'ArialMT', Arial, Helvetica, sans-serif; }
 
@@ -99,7 +100,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 /* ################### screen ################### */
 .main { display: flow-root; background-color:#191919; width:100%; max-width:1024px; margin: 0 auto; float: none; }
-.screenmain { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; min-height:100vh; float: left; background-color: #191919; padding:120px 3rem 3rem 3rem; box-sizing: border-box; }
+.screenmain { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; min-height:100vh; float: left; background-color: #191919; padding:120px 3rem 5rem 3rem; box-sizing: border-box; }
 .screenmain.screendashboard { min-height: auto; background-color:transparent;  background: url('../images/dashboard-bg.png') no-repeat center top; background-size:100% 70%;  }
 .screenmain.screendashboardbottom { padding-top: 0 !important; min-height: auto; }
 .screenmain.screenqrcode { position: relative; padding-top: 0 !important; padding-bottom: 150px !important; background-color:transparent;  background-image:url('../images/scanbg.png'), url('../images/scan_qr_bg.png'); background-repeat:no-repeat, no-repeat; background-position: center bottom, center -50px; background-size:100% auto, 100% auto; }
@@ -136,7 +137,10 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
  
 /* ################### register ################### */
 .registerHead { width: 100%; float: left; margin: 0 0 1.5rem 0; text-align: left; text-transform: none;  font-weight: bold; color:#F5F0EB; font-size:30px;    }
-.registerSmallHead { margin:0 0 1rem 0; padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500; color: rgba(245, 240, 235,0.6); font-size: 18px;  }
+.registerSmallHead { margin:0 0 1rem 0; padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500; color: rgba(245, 240, 235,0.6); font-size: 18px;   }
+.registerback { width: 100%; float: left; margin: 0 0 2rem 0; text-align: left;  }
+.registerback span { text-decoration: none; cursor: pointer; font-weight: bold; color:#AFCDAF; font-size: 18px; transition: all 0.5s ease-out; filter: grayscale(0);   }
+.registerback span:hover {color:#fff; transition: all 0.5s ease-in; filter: grayscale(1); }
 .registercontainer { width: 100%; float: left;   }
 .registerMsg { width: 100%;float: left;text-align: center;text-transform: none; font-weight: 500; color: #f30;font-size: 18px;  margin-top:1.5rem; }
 .registerMsgOtp { position: relative; width: 100%;float: left;text-align: left;text-transform: none; font-weight: 500; color: rgba(245, 240, 235,0.6); font-size:18px; display:flex; justify-self:flex-start; align-items: center; flex-wrap: wrap; }
@@ -146,7 +150,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .numberedit:hover { color:#AFCDAF; text-decoration: underline;  filter: grayscale(100%); }
 
 .registerField { position: relative; width: 100%; float: left;text-align: center; margin-top:1.5rem;}
-.registertext { margin:0; padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500;color: rgba(175, 205, 175, 0.6); font-size: 18px;  }
+.registertext { margin:0; padding:0.5rem 0 0 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500;color: rgba(175, 205, 175, 0.6); font-size: 18px;  }
 .registertext.registertextcenter { margin: 1rem 0 0 0; text-align: center; }
 
 .registerField input {  float: left;  width: 100%;  padding: 0.5rem 1rem;  border: 0; border-bottom: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235,0.6);  font-size: 24px;  box-shadow:none; box-sizing: border-box; }
@@ -158,18 +162,29 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
  .registerError { display: block; margin-top:0.8rem; padding: 0; float: left; width: 100%; text-align: left; font-weight: 500; color: #f30; font-size: 16px;}
  .registerError.registerErrorCenter { text-align: center; }
 
+ .registerTncAccept { position: relative; width: 100%; float: left;text-align: center; margin-top:2.5rem;}
+ .registerTncAccept input[type='checkbox'] { display: none; }
+ .registerTncAccept label { position: relative; display: flex; justify-content: flex-start; align-items:center; box-sizing: border-box; width:auto; float: left; padding:0; margin:0; text-align: left;  cursor: pointer; background:transparent; font-weight: 500; font-size: 18px; color:rgba(245, 240, 235, 0.8); }
+ .registerTncAccept label:before { content: ""; padding: 0; margin: 0;  background:none; border-radius:0; height: 16px; width: 16px;  border:solid 2px rgba(245, 240, 235, 0.8); }
+ .registerTncAccept label:after { opacity:0.1; content: ""; z-index: 2; position:absolute; left: 4px; top:2px; transform: rotate(-45deg); padding: 0; margin: 0;  background:none; border-radius:0; height:6px; width: 16px;  border-left:solid 3px #AFCDAF; border-bottom: solid 3px #AFCDAF; }
+ .registerTncAccept label span { margin-left: 1rem; }
+ .registerTncAccept input[type="checkbox"]:checked + label { color:#AFCDAF; }
+.registerTncAccept input[type="checkbox"]:checked + label:before{ border-color:#AFCDAF; }
+.registerTncAccept input[type="checkbox"]:checked + label:after{  opacity:1; }
+
+
 .registerSubmit {  margin-top:2rem;  float: left;  width: 100%;  text-align: center;}
 .register_button { width: 100%; display: inline-block;  margin: 0 auto;  padding:1.1rem 2.5rem; box-sizing: border-box; text-align: center;  background:#F5F0EB;  font-weight: 700;  font-size: 18px;  color:#191919;  border: solid 2px #191919; transition: all 0.5s ease-out;  border-radius: 0;  text-decoration: none;   cursor: pointer;  text-transform: uppercase; }
 .register_button:hover { background: #AFCDAF;  color: #191919;   transition: all 0.5s ease-in; }
-.register_button.disabled { user-select: none;  pointer-events: none;  opacity: 0.4; }
+.register_button[disabled], .register_button:disabled { user-select: none;  pointer-events: none;   opacity: 0.6; }
 
 .registerOtpText { margin: 2rem 0 0rem 0; padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500; font-size: 18px; color:rgba(245, 240, 235, 0.8);}
 .registerOtpText span { display: inline-block; text-decoration:underline; cursor: pointer; color:rgba(245 240 235, 0.8); transition: all 0.5s ease-out;  }
 .registerOtpText span:hover {   color: #AFCDAF;  transition: all 0.5s ease-in;  }
-
 .registerBottomText { margin-top: 2rem; width: 100%; float: left; text-align: left; text-transform: none;  font-weight: 500; color: rgba(245, 240, 235,0.6);  font-size:18px;  }
 .registerBottomText a { display: inline-block; text-decoration:underline; cursor: pointer; color: rgba(245, 240, 235,0.6);   transition: all 0.5s ease-out;  }
 .registerBottomText a:hover {   color: #AFCDAF;  transition: all 0.5s ease-in;  }
+.registerLineText { margin:1rem 0 0.5rem 0; width: 100%; float: left; text-align: left; text-transform: none;  font-weight: 500; color: rgba(245, 240, 235,0.6);  font-size:16px;  }
 
 .registerOtp {float: left; width: 100%; margin:3rem 0 0 0; padding: 0; text-align: left; }
 .registerOtp div { width: 260px; height: 45px; margin: 0; float: left; padding: 0; display:block; overflow: hidden; }
@@ -356,7 +371,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 @media only screen and (max-width:599px)
 {
 /* ################### screen ################### */
-.screenmain { padding:110px 2em 2rem 2rem;  }
+.screenmain { padding:110px 2em 4rem 2rem;  }
 .screenmain.screendashboardbottom { padding-top: 0 !important; }
 
 
@@ -443,7 +458,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 {
  
 /* ################### screen ################### */
-.screenmain { padding:100px 1rem 1rem 1rem;  }
+.screenmain { padding:100px 1rem 2rem 1rem;  }
 .screenmain.screendashboardbottom { padding-top: 0 !important; }
 
 
