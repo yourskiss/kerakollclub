@@ -35,7 +35,7 @@ export default function RewardshistoryComponent () {
         }
         else
         {
-          setNodata('No rewards point available');
+          setNodata('Reward points not available.');
         }
     }).catch((error) => {
         setLoading(false);

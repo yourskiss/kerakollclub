@@ -175,7 +175,7 @@ export default function UpdateprofileComponent() {
         <section className="screencontainer">
         <form onSubmit={handleSubmit}>
             <div className="registercontainer">
-                <div className="registerHead">Setup your profile</div>
+                <div className="registerHead">Update your profile</div>
                 <ImageCropperUpdate picvalue={ filedata } filePath={getFilePath} />
                 <div style={{   position:"absolute", top:"-99999px", left:"-99999px"  }}>
                     <input 
