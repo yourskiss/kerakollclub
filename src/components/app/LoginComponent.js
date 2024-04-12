@@ -26,8 +26,8 @@ export default function LoginComponent() {
     const [orderID, setOrderID] = useState(''); 
     const [OTPVerified, setOTPVerified] = useState(false);
     const [otpsent, setOtpsent] = useState(false);
-    const mobileChange = (e) =>{setMobileValues(e.target.value);}
-    const otpChange = (e) =>{setOtpValues(e.target.value); }
+    const mobileChange = (e) =>{setMobileValues(e.target.value); setMobileError(""); }
+    const otpChange = (e) =>{setOtpValues(e.target.value); setOtpError(''); }
     const onInputmaxLength = (e) => {
         if(e.target.value.length > e.target.maxLength)
         {
@@ -40,7 +40,7 @@ export default function LoginComponent() {
       if (!mobileValues){setMobileError("Mobile number is required!");}
       else if(mobileValues.length < 10){setMobileError("Mobile Number  must have at least 10 Digit");}
       else if(!regexMobile.test(mobileValues)){setMobileError("Invalid mobile number!");}
-      else { setMobileError(""); setIsMobile(true);  }
+      else { setMobileError(""); setIsMobile(true);   }
     }
     const otpSubmit =(e) =>{
       e.preventDefault();
@@ -51,6 +51,8 @@ export default function LoginComponent() {
       else{ setOtpError(''); setIsOTP(true); }
     }
     const changeNumber = (e) => {
+      e.preventDefault();
+      setAgree(true);
       setIsDisabled(false);
       setIsOTP(false);
       setIsMobile(false)
@@ -204,7 +206,8 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    // setOTPVerified(true); // tesing
+     setOTPVerified(true); // tesing
+     /*
     setLoading(true);
       axios({
          url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
@@ -229,6 +232,7 @@ export default function LoginComponent() {
         toast.error(err.message);
         setLoading(false); 
       });
+      */
   }
 
 
@@ -247,7 +251,10 @@ export default function LoginComponent() {
               <div className="registerHead">Welcome!</div>
               <div className="registerField">
                 <div className="registertext">Enter mobile number *</div>
-                <input  type="number" name="mobile" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
+                <div className="registerinputformobile">
+                  <span>+91-</span>
+                  <input type="number" name="mobile" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
+                </div>
                 { mobileError && <span className='registerError'>{mobileError}</span> } 
               </div>
               <div className="registerTncAccept">
@@ -263,8 +270,7 @@ export default function LoginComponent() {
             <div className="registercontainer">
               <div className="registerHead">Verify with OTP</div>
               <div className="registerMsgOtp">
-                <b>We have sent an OTP to +91 </b>
-                <span>{mobileValues}</span>
+                <span>We have sent an OTP to +91-{mobileValues}</span>
                 <em className="numberedit" onClick={changeNumber}>Change</em>
               </div>
               <div className="registerOtp">

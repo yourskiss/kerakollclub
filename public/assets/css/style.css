@@ -143,7 +143,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .registerback span:hover {color:#fff; transition: all 0.5s ease-in; filter: grayscale(1); }
 .registercontainer { width: 100%; float: left;   }
 .registerMsg { width: 100%;float: left;text-align: center;text-transform: none; font-weight: 500; color: #f30;font-size: 18px;  margin-top:1.5rem; }
-.registerMsgOtp { position: relative; width: 100%;float: left;text-align: left;text-transform: none; font-weight: 500; color: rgba(245, 240, 235,0.6); font-size:18px; display:flex; justify-self:flex-start; align-items: center; flex-wrap: wrap; }
+.registerMsgOtp { position: relative; width: 100%;float: left;text-align: left;text-transform: none; font-weight: 500; color: rgba(245, 240, 235,0.6); font-size:18px; display:flex; justify-content: flex-start;  align-items:center;   }
 .registerMsgOtp b { font-weight: normal; }
 .registerMsgOtp span { font-weight: normal; }
 .numberedit { margin: 0 0 0 1rem; width:25px; height:25px;   padding:0; font-size: 0; cursor: pointer; text-decoration: none;  background: url('../images/edit_icon.png') no-repeat center center; background-size: 100% 100%; }
@@ -153,11 +153,17 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .registertext { margin:0; padding:0.5rem 0 0 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500;color: rgba(175, 205, 175, 0.6); font-size: 18px;  }
 .registertext.registertextcenter { margin: 1rem 0 0 0; text-align: center; }
 
+
+
 .registerField input {  float: left;  width: 100%;  padding: 0.5rem 1rem;  border: 0; border-bottom: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235,0.6);  font-size: 24px;  box-shadow:none; box-sizing: border-box; }
 .registerField input:disabled {user-select: none; pointer-events: none;}
 .registerField .registerSelect  {  float: left;  width: 100%;  padding:0.5rem 1rem;  border: 0; border-bottom: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235,0.6); font-size: 24px;  box-shadow:none;  text-indent: 0; text-overflow: "";-webkit-appearance: none; appearance: none; box-sizing: border-box; background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGBAMAAAAI3hL1AAAAAXNSR0IB2cksfwAAAAlwSFlzAAAAnQAAAJ0Bj3LnbgAAACRQTFRF////////////AAAA////////////////////////////////OT+Z1gAAAAx0Uk5TCIcKAAGRwgy8mZO95nqVkAAAAC1JREFUeJxjZFQS+H+P0VXpzNccRhMlGfFdjMbihS/7GY0ZVV99YDRmEHzPAADT/wuH1cAZOAAAAABJRU5ErkJggg=='); background-repeat: no-repeat;  background-position: right 1rem center; }
 .registerField .registerSelect  option { color: #191919;}
 .registerField .registerSelect:disabled {user-select: none; pointer-events: none;}
+
+.registerinputformobile { float: left;  width: 100%;  padding: 0.5rem 1rem;  border: 0; border-bottom: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;   }
+.registerinputformobile span { width: 56px; float: left; text-align: left; font-weight: 500;  color: rgba(245, 240, 235,0.6);  font-size: 24px;  }
+.registerinputformobile input { width: calc(100% - 56px); border: 0; padding: 0; }
 
  .registerError { display: block; margin-top:0.8rem; padding: 0; float: left; width: 100%; text-align: left; font-weight: 500; color: #f30; font-size: 16px;}
  .registerError.registerErrorCenter { text-align: center; }
@@ -189,7 +195,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .registerOtp {float: left; width: 100%; margin:3rem 0 0 0; padding: 0; text-align: left; }
 .registerOtp div { width: 260px; height: 45px; margin: 0; float: left; padding: 0; display:block; overflow: hidden; }
 .registerOtp aside { left: 0; position: sticky; }
-.registerOtp aside input { margin: 0; padding:0 0 0 12px; letter-spacing:33px; border: 0; outline: none; width: 290px; min-width: 290px;  background: none; background-image: linear-gradient(to left, #F5F0EB 80%, rgba(222, 222, 222, 0) 0%);background-position: bottom; background-size:45px 3px;background-repeat: repeat-x;background-position-x: 37px; text-align: left; font-size:24px; line-height: 36px; font-weight: bold;  color: #F5F0EB; box-sizing: border-box; }
+.registerOtp aside input { margin: 0; padding:0 0 0 15px; text-indent: 0; letter-spacing:33px; border: 0; outline: none; width: 310px; min-width: 310px;  background: none; background-image: linear-gradient(to left, #F5F0EB 80%, rgba(222, 222, 222, 0) 0%);background-position: bottom; background-size:45px 3px;background-repeat: repeat-x;background-position-x: 37px; text-align: left; font-size:24px; line-height: 36px; font-weight: bold;  color: #F5F0EB; box-sizing: border-box; }
 .registerPhotoField { width: 100%; float: left;text-align: center; margin-top: 1rem;}
 .registerPhotoField input[type='file'] { display: none; }
 .registerPhotoField label { display: inline-block; position: relative; float: none; height: 90px; width: 90px; border-radius: 50%; border: solid 20px #afcdaf; background:transparent; cursor: pointer; }
