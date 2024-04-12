@@ -1,6 +1,6 @@
 *{margin:0;padding:0;box-sizing:border-box; }
  @font-face { font-family: 'ArialMT'; src: url('../fonts/arialmt.woff2') format('woff2'); font-weight: normal; font-style: normal;  } 
- @font-face { font-family: 'lneue'; src: url('../fonts/lneue.woff2') format('woff2'); font-weight: normal; font-style: normal;  }  
+ @font-face { font-family: 'ln'; src: url('../fonts/lneue.woff2') format('woff2'); font-weight: normal; font-style: normal;  }  
 html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{ outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
 body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-height:1;font-family: 'ArialMT', Arial, Helvetica, sans-serif; }
 
@@ -136,7 +136,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
  
  
 /* ################### register ################### */
-.registerHead { width: 100%; float: left; margin: 0 0 1.5rem 0; text-align: left; text-transform: none;  font-weight: bold; color:#F5F0EB; font-size:30px; font-family: 'lneue', Arial, Helvetica, sans-serif;   }
+.registerHead { width: 100%; float: left; margin: 0 0 1.5rem 0; text-align: left; text-transform: none;  font-weight: bold; color:#F5F0EB; font-size:30px; font-family: 'ln', Arial, Helvetica, sans-serif;   }
 .registerSmallHead { margin:0 0 1rem 0; padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500; color: rgba(245, 240, 235,0.6); font-size: 18px;   }
 .registerback { width: 100%; float: left; margin: 0 0 2rem 0; text-align: left;  }
 .registerback span { text-decoration: none; cursor: pointer; font-weight: bold; color:#AFCDAF; font-size: 18px; transition: all 0.5s ease-out; filter: grayscale(0);   }
@@ -217,8 +217,8 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .approvalcontainer dl dt aside { display: inline-block; width:160px; height: 160px; border-radius: 50%; background-color: #afcdaf; margin: 0; padding:0.5rem; border: none; overflow: hidden; box-sizing: border-box; }
 .approvalcontainer dl dt aside img { float: left; width: 100%; height:97%; border: solid 5px #fff; border-radius: 50%; margin: 0;padding: 0;     box-sizing: border-box; }
 .approvalcontainer dl dd { list-style: none; width: calc(100% - 200px); float: left; margin: 0;padding: 0; }
-.approvalcontainer dl dd p { padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500;color:#F5F0EB; font-size:36px;  }
-.approvalcontainer dl dd p span { display: block; margin:0 0 1rem 0; }
+.approvalcontainer dl dd p { padding: 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 600;color:#F5F0EB; font-size:36px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
+.approvalcontainer dl dd p span { display: block; margin:0 0 1rem 0;  }
 .approvalcontainer dl dd p span b { font-size: 140%; color:#afcdaf;  }
 
 .approvalcontainer article{   width: 100%; float: left; text-align: center; text-transform: none;  font-weight: 500; color:#afcdaf;  font-size:24px;  }
@@ -231,7 +231,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .pc_slider {width: 100%;float: left;overflow: hidden;margin: 0 !important;padding: 0 0 30px 0 !important;}
 .pc_item { position: relative; width: 100%;float: left;height: auto;margin: 0;padding: 0; }
 .pc_item img { width: 100%; height: auto; float: left;margin: 0;padding: 0;}
-.pc_item p { z-index: 1; position: absolute; bottom:20%; left: 0; width: 100%;float: left;margin: 0;padding: 0; text-align: center;  font-weight: 500;color: #F5F0EB; font-size: 42px; }
+.pc_item p { z-index: 1; position: absolute; bottom:20%; left: 0; width: 100%;float: left;margin: 0;padding: 0; text-align: center; font-weight: bold; color: #F5F0EB; font-size: 42px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .pc_slider .slick-list {z-index: 2;margin: 0;padding: 0;overflow: hidden;}
 .pc_slider .slick-track {display: flex;justify-content: space-between;align-items: stretch;height: inherit;margin: 0;padding: 0;}
 .pc_slider .slick-slide {margin: 0;padding: 0; }
@@ -249,7 +249,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .db_item aside { width: 100%; float: left; margin:0; padding: 0;  box-sizing: border-box;  }
 .db_item aside img { width: 100%; height: auto; float: left; margin:0; padding: 0;  border: 0; box-sizing: border-box; }
 .db_item h2 { width: 100%; float: left; margin:0; padding:1rem; background-color:#414141;  box-sizing: border-box; display: flex; justify-content: flex-start; align-items: center;  }
-.db_item h2 span { color: #F5F0EB; font-size: 24px;  box-sizing: border-box; }
+.db_item h2 span { color: #F5F0EB; font-size: 24px;  box-sizing: border-box; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .db_item h2 img { max-width: 100%; width: 32px; height: auto; margin-left: 1rem;  box-sizing: border-box;  }
 .dashboard_slider .slick-list {z-index: 2;margin: 0; padding: 0 5rem 0 0px !important; overflow: hidden;  box-sizing: border-box; }
 .dashboard_slider .slick-track {display: flex;justify-content: space-between;align-items: stretch;height: inherit;margin: 0;padding: 0;}
@@ -260,10 +260,10 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .dashboard_slider .slick-dots li button { display: none;  }
 .dashboard_slider .slick-dots li.slick-active {  background: #AFCDAF;  }
 .dashboard_earned_point { width: 100%; float: left; margin:2rem 0 4rem 0; padding: 0;  box-sizing: border-box;}
-.dashboard_earned_point h2 { margin:0 0 1rem 0; padding: 0; width: 100%; float: left; text-align: left;  box-sizing: border-box; text-transform: none; font-weight: 500;color: #fff; font-size: 30px;  }
+.dashboard_earned_point h2 { margin:0 0 1rem 0; padding: 0; width: 100%; float: left; text-align: left;  box-sizing: border-box; text-transform: none; font-weight: 600;color: #fff; font-size: 30px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .dashboard_earned_point p {  display: flex; justify-content:flex-start; align-items: flex-start; flex-direction: column; width: auto; float: left; margin:0; padding: 0;  box-sizing: border-box;  text-transform: none;  }
-.dashboard_earned_point p span { font-weight: bold; color:#AFCDAF; font-size:110px; text-shadow: 8px 6px 0px #070C12; }
-.dashboard_earned_point p em { margin-left: 1rem; margin-top: 0.5rem; text-align: left; font-weight: 500; color:#fff; font-size:24px; font-style: normal; }
+.dashboard_earned_point p span { font-weight: bold; color:#AFCDAF; font-size:110px; text-shadow: 8px 6px 0px #070C12;  font-family: 'ln', Arial, Helvetica, sans-serif;  }
+.dashboard_earned_point p em { margin-left: 1rem; margin-top: 0.5rem; text-align: left; font-weight: 600; color:#fff; font-size:24px; font-style: normal; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .dashboard_earned_point p img { margin-top:-0.5rem; width: 50px; height: auto; animation: blinker 5s linear infinite; }
 @keyframes blinker {  
   0% {   transform:scale(1); opacity: 0.3; }
@@ -278,10 +278,10 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .dashboard_content aside { width: 100%; height: auto; float: left; margin:2rem 0 0 0; padding: 0;  border: 0; text-align: center; }
 .dashboard_content aside img { display: inline-block; width: auto; max-width: 100%; height: auto; float:none; margin:0 auto; margin-top: 1rem; padding: 0; border: 0; cursor: pointer; }
 .dashboard_content aside img.dashboard_scan_img { background-color: #595959; padding:1rem; margin:0 auto; border: solid 1.5rem #303030; border-radius: 5px; }
-.dashboard_content h5 {  width: 100%; float: left; margin:2rem 0 0 0; padding: 0; text-align: center;  text-transform: none; }
+.dashboard_content h5 {  width: 100%; float: left; margin:2rem 0 0 0; padding: 0; text-align: center;  text-transform: none; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .dashboard_content h5 span { font-weight: bold; color:#AFCDAF; font-size:60px; text-shadow: 8px 6px 0px #070C12; }
 .dashboard_content h5 em { margin-left:0.1rem;  font-weight: bold; color:#AFCDAF; font-size:18px; font-style: normal; }
-.dashboard_content h2 {  width: 100%; float: left; margin:3rem 0 0 0; padding: 0; text-align: center;  text-transform: none; font-weight: 600;color: #fff; font-size: 24px;  }
+.dashboard_content h2 {  width: 100%; float: left; margin:3rem 0 0 0; padding: 0; text-align: center;  text-transform: none; font-weight: 600;color: #fff; font-size: 24px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .dashboard_content section.dashboard_redeempointbg h2 { margin:1rem 0 0 0; }
 .dashboard_content p { width: 100%; float: left; margin:1rem 0 0 0; padding: 0; text-align: center;  box-sizing: border-box;  text-transform: none; font-weight: 500;color:rgba(255, 255, 255, 0.6); font-size: 16px;  }
 
@@ -290,7 +290,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 /* ################### qr code reader ################### */
 .scanqrcodesection  { width: 100%; float: left; margin:0; padding:3rem 0 0 0; text-align: center; }
-.scanqrcodesection h2 {  width: 100%; float: left; margin:0 0 3rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: 500;color: #fff; font-size: 30px;  }
+.scanqrcodesection h2 {  width: 100%; float: left; margin:0 0 3rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: bold;color: #fff; font-size: 30px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .qr-reader { display: inline-block; float:none; margin: 0 auto; width: 95%; max-width: 450px; height:450px; background-color: #afcdaf; z-index: 2; position: relative; left:0;  top:0;  }
 .qr-reader video { width: 100%;  height: 100%;  object-fit: cover;}
 .qr-reader section {  width: 100% !important; height: 100% !important;  left: 0 !important; top: 0 !important; float: left; }
@@ -301,7 +301,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 /* ################### qr container ################### */
 .scanqrcodecontainer  { width: 100%; float: left; margin:1rem 0; padding: 0; }
-.scanqrcodecontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #fff; font-size:24px;   }
+.scanqrcodecontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #fff; font-size:24px; font-family: 'ln', Arial, Helvetica, sans-serif;   }
 .scanqrcodecontainer h2 span { margin-top: 0.3rem; display: block; font-weight: normal; color: #fff; font-size:18px;    }
 .scanqrcodecontainer ul { width: 100%; float: left; margin:1rem 0 2rem 0; padding:0; display: flex; justify-content: center; align-items: stretch; flex-wrap: wrap;  }
 .scanqrcodecontainer ul li { list-style: none; width: 50%; float: left; margin:0; box-sizing: border-box; text-align: center; border: solid 1px #eee; background: #fff;padding: 1rem; font-weight: 500; color: #414141; font-size:18px;  }
@@ -312,7 +312,7 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 /* ################### rewardscontainer ################### */
 .rewardscontainer { width: 100%; float: left; margin:2rem 0 0 0; padding: 0; }
-.rewardscontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #fff; font-size:24px;   }
+.rewardscontainer h2 { width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #fff; font-size:24px; font-family: 'ln', Arial, Helvetica, sans-serif;   }
 .rewardscontainer h3 { width: 100%; float: left; margin:0; padding:0.5rem 0 1.5rem 0; text-align: center;  font-weight: 500; color: #afcdaf; font-size:18px;   }
 .rewardscontainer h3 span {  font-weight: bold; }
 .rewardscontainer ul { width: 100%; float: left; margin:0; padding:0;  }
@@ -340,16 +340,16 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 
 /* ################### earnepoints ################### */
 .earnepoints_content {  width: 100%; float: left; margin:300px 0 0 0; padding: 0; }
-.earnepoints_content h2 { display: block; width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #AFCDAF; font-size:42px; }
+.earnepoints_content h2 { display: block; width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color: #AFCDAF; font-size:42px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .earnepoints_content h3 { display: block; width: 100%; float: left; margin:0; padding:0.5rem 0 0 0; text-align: center;  font-weight: 500; color: #fff; font-size:27px; }
-.earnepoints_content h4 { display: block; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center;  font-weight: bold; color: #fff; font-size:100px; }
-.earnepoints_content h5 { display: block; width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: bold; color:#AFCDAF; font-size:60px; }
+.earnepoints_content h4 { display: block; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center;  font-weight: bold; color: #fff; font-size:100px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
+.earnepoints_content h5 { display: block; width: 100%; float: left; margin:0; padding:0; text-align: center;  font-weight: 600; color:#AFCDAF; font-size:60px; font-family: 'ln', Arial, Helvetica, sans-serif;  }
 .earnepoints_scan { width: 100%; float: left; margin:150px 0 1rem 0; padding: 0; }
 .earnepoints_scan aside { width: 100%; float: left; text-align: center;  }
 .earnepoints_scan aside a { text-decoration: none; }
 .earnepoints_scan aside a img { background-color: #696969; padding:1rem; border: 0; width: 110px; height: 110px; margin: 0 auto; display: inline-block; float: none; float: none;  transform:scale(1); transition: all 0.5s ease-out;  }
 .earnepoints_scan aside a:hover img { transform:scale(1.1); transition: all 0.5s ease-in; }
-.earnepoints_scan p { display: block; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center;  font-weight: 500; color: #fff; font-size:24px;   }
+.earnepoints_scan p { display: block; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center;  font-weight: 600; color: #fff; font-size:24px;  font-family: 'ln', Arial, Helvetica, sans-serif;  }
 
 
 @media only screen and (max-width:1023px)
