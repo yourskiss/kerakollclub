@@ -16,25 +16,16 @@ import { ipaddress, osdetails, browserdetails  } from "../core/jio";
 export default function RegistationComponent() {
   const [step, setStep] = useState(1);
   const[loading, setLoading] = useState(false);
-  const [stateList, setStateList] = useState([]);
-  const [cityList, setCityList] = useState([]);
-  const [stateID, setStateID] = useState('');
-
+  const [citystateList, setCitystateList] = useState([]);
+  const [stateName, setStateName] = useState('');
+  const [cityName, setCityName] = useState('');
+  const[citystateErrors, setCitystateErrors] = useState('');
   const[firstname, setFirstname] = useState('');
   const[fnErrors, setfnErrors] = useState('');
-
   const[lastname, setLastname] = useState('');
   const[lnErrors, setlnErrors] = useState('');
-
-  const [statename, setStatename] = useState('');
-  const[stateErrors, setStateErrors] = useState('');
-
-  const [cityname, setCityname] = useState('');
-  const[cityErrors, setCityErrors] = useState('');
-
   const[aadhaarinfo, setAadhaarinfo] = useState('');
   const[aadhaarErrors, setAadhaarErrors] = useState('');
-
   const[mobilenumber, setMobilenumber] = useState('');
   const[mobileErrors, setMobileErrors] = useState('');
 
@@ -57,33 +48,31 @@ export default function RegistationComponent() {
     if(isUT) { push("/dashboard"); return }
   }, [isUT]);
 
+ 
   useEffect(() => {
     setLoading(true); 
     axios({
-      url: process.env.BASE_URL + "CommonUtility/State?countryId=1",
+      url: process.env.BASE_URL + "CommonUtility/StateCity",
       method: "GET",
       headers: { 'authorization': 'Bearer '+ setBT  },
     }).then((res) => {
-        setStateList(res.data);
+       // console.log(res);
+        setCitystateList(res.data);
         setLoading(false); 
     }).catch((err) => {
         setLoading(false); 
         console.log(err.message);
     });
-     
-    stateID !== '' ?
-        axios({
-          url: process.env.BASE_URL + "CommonUtility/City?stateId="+stateID,
-          method: "GET",
-          headers: { 'authorization': 'Bearer '+ setBT  },
-        }).then((res) => {
-          setCityList(res.data);
-        }).catch((err) => {
-            console.log(err.message);
-        })
-   : null;
-  }, [stateID]);
+  }, []);
 
+  const handelcitystate = (e) =>
+  {            
+      setStateName(e.target.options[e.target.selectedIndex].title); 
+      setCityName(e.target.value); 
+      setCitystateErrors(''); 
+      // console.log(stateName, cityName);
+  } 
+  
  
   const backtostep = (e) => {
     e.preventDefault();
@@ -102,10 +91,8 @@ export default function RegistationComponent() {
   const handleStep2 = (e) => {
     e.preventDefault();
     setAadhaarErrors(''); 
-    setStateErrors(''); 
-    setCityErrors('');
-    if(statename === '') { setStateErrors('State is required.'); }
-    else if(cityname === '' ) { setCityErrors('City is required.'); }
+    setCitystateErrors(''); 
+    if(cityName === '') { setCitystateErrors('City is required.'); }
     else if(aadhaarinfo === '') { setAadhaarErrors('Aadhaar is required.'); }
     else if(aadhaarinfo .length !== 12) { setAadhaarErrors('Aadhaar must have at least 12 Digits.'); }
     else { setStep(3); }
@@ -123,7 +110,7 @@ export default function RegistationComponent() {
      }
   } 
 
-
+   
   const handleRegistration = () => 
   {
     setLoading(true);
@@ -136,8 +123,8 @@ export default function RegistationComponent() {
       emailaddress:'',
       aadhaarinfo: aadhaarinfo,
       addressline1: "",
-      city: cityname,
-      state: statename,
+      city: cityName,
+      state: stateName,
       country: "India",
       postalcode: "",
       profilepictureurl: userImg,
@@ -210,34 +197,21 @@ export default function RegistationComponent() {
                 </div>    
               </form>) : null }
               </>
-
               
               <>
               { step === 2 ? (<form onSubmit={handleStep2}>
                 <div className="registerField">
                       <div className="registertext">Select State <small>*</small></div>
-                      <select  name="state" className="registerSelect" value={statename}  onChange={ e => 
-                        { setStatename(e.target.value);  setStateID(e.target.options[e.target.selectedIndex].title); setStateErrors(''); } }> 
-                        <option value="" title=""></option>
+                      <select  name="citystatename" className="registerSelect" value={cityName} onChange={handelcitystate}>
+                        <option value="" title=""></option> 
                          {
-                            stateList.map((val) => <option value={val.name} title={val.id} key={val.id}>{val.name}</option>)
+                            citystateList.map((val) => <option value={val.cityname} title={val.statename} key={val.id}>{val.statecityname}</option>)
                          }
                       </select>
-                      { stateErrors && <span className="registerError"> {stateErrors}</span> }
+                      { citystateErrors && <span className="registerError"> {citystateErrors}</span> } 
                       <div className="registerLineText">Enter State name to pick nearby City</div>
                 </div>
-                { stateID !== '' ? 
-                <div className="registerField">
-                      <div className="registertext">Select City <small>*</small></div>
-                      <select name="city" className="registerSelect"  value={cityname} onChange={ e => { setCityname(e.target.value);  setCityErrors(''); } }>
-                        <option value=""></option>
-                         {
-                            cityList.map((val) => <option value={val.name} key={val.id}>{val.name}</option>)
-                         }  
-                      </select>
-                      { cityErrors && <span className="registerError">{cityErrors}</span> }
-                </div>
-                : null }
+ 
 
                 <div className="registerField">
                   <div className="registertext">Aadhaar Number <small>*</small></div>

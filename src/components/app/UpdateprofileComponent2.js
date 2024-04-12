@@ -22,37 +22,17 @@ export default function UpdateprofileComponent() {
     const osInfo = osdetails();
     const browserInfo = browserdetails();
     const [userdata, setUserdata] = useState({});
-  
+    const [stateList, setStateList] = useState([]);
+    const [stateID, setStateID] = useState('');
+    const [statename, setStatename] = useState('');
+    const [cityList, setCityList] = useState([]);
+    const [cityname, setCityname] = useState('');
     const [data, setData] = useState(false);
     const [formValue, setFormValue] = useState({});
     const [formError, setFormError] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [filedata, setFiledata] = useState('');
     const getFilePath = (data)=>{setFiledata(data);}
-
-    const [citystateList, setCitystateList] = useState([]);
-    const [stateName, setStateName] = useState('');
-    const [cityName, setCityName] = useState('');
-
-
-    useEffect(() => {
-        setLoading(true); 
-        axios({
-          url: process.env.BASE_URL + "CommonUtility/StateCity",
-          method: "GET",
-          headers: { 'authorization': 'Bearer '+ setBT  },
-        }).then((res) => {
-           // console.log(res);
-            setCitystateList(res.data);
-            setLoading(false); 
-        }).catch((err) => {
-            setLoading(false); 
-            console.log(err.message);
-        });
-      }, []);
-    
- 
-
     
     useEffect(() => {
         if(!isUT) { push("/"); return  }
@@ -66,17 +46,42 @@ export default function UpdateprofileComponent() {
             setLoading(false);
             setData(true);
             setUserdata(res.data.result);
-            setStateName(res.data.result.state);
-            setCityName(res.data.result.city);
+            setStatename(res.data.result.state);
+            setCityname(res.data.result.city);
             setFiledata(res.data.result.profilepictureurl);
         }).catch((err) => {
             toast.warn(err.message);
             setLoading(false); 
         });
-         
+        axios({
+            url: process.env.BASE_URL + "CommonUtility/State?countryId=1",
+            method: "GET",
+            headers: { 'authorization': 'Bearer '+ setBT  },
+          }).then((res) => {
+            // console.log(res.data);
+              setStateList(res.data);
+              setLoading(false); 
+          }).catch((err) => {
+              setLoading(false); 
+              console.log(err.message);
+          });
     }, [isUT]);
- 
- 
+    useEffect(() => {
+        const getstateID = stateList.filter((st) => st.name === statename);
+        const getstate = getstateID.map(st => (st.id));
+        setStateID(getstate.toString());
+    }, [stateID, statename, stateList]);
+    useEffect(() => {
+            axios({
+            url: process.env.BASE_URL + "CommonUtility/City?stateId="+stateID,
+            method: "GET",
+            headers: { 'authorization': 'Bearer '+ setBT  },
+            }).then((res) => {
+                setCityList(res.data);
+            }).catch((err) => {
+                console.log(err.message);
+            })
+    }, [stateID]);
     useEffect(() => {
         setFormValue({
             'profilepictureurl': userdata.profilepictureurl,
@@ -87,13 +92,13 @@ export default function UpdateprofileComponent() {
             'aadhaarinfo': userdata.aadhaarinfo
         });
     }, [data]);
-
     const validateHandler =(val) =>{
         const error = {};
         if(val.profilepictureurl===''){error.profilepictureurl = "Profile Picture is required"}
         if(val.firstname===''){error.firstname = "First name is required"}
         if(val.lastname===''){error.lastname = "Last name is required"}
-        if(val.citystatename===''){error.state = "City is required"}
+        if(val.state===''){error.state = "State is required"}
+        if(val.city===''){error.city = "City is required"}
         if(val.aadhaarinfo===''){error.aadhaarinfo = "Aadhaar number is required"}
         else if(val.aadhaarinfo.length < 12){error.aadhaarinfo = "Aadhaar must have at least 12 Digit"}
         return error;
@@ -106,12 +111,8 @@ export default function UpdateprofileComponent() {
     }
     const onChangeField = (e) => { 
         setFormValue({ ...formValue, [e.target.name] : e.target.value }); 
-        if(e.target.name === "citystatename")
-        { 
-            setStateName(e.target.options[e.target.selectedIndex].title); 
-            setCityName(e.target.value); 
-           // console.log(stateName, cityName);
-        }
+        if(e.target.name === "state"){ setStatename(e.target.value); setStateID(e.target.options[e.target.selectedIndex].title); }
+        if(e.target.name === "city"){ setCityname(e.target.value); }
         if(e.target.name === "profilepictureurl"){ setFiledata(e.target.value);  }
     }
     useEffect(()=>{
@@ -128,8 +129,8 @@ export default function UpdateprofileComponent() {
             emailaddress: "",
             aadhaarinfo: formValue.aadhaarinfo,
             addressline1: "",
-            city: cityName,
-            state: stateName,
+            city: cityname,
+            state: statename,
             country: "India",
             postalcode: "",
             profilepictureurl: filedata,
@@ -213,21 +214,39 @@ export default function UpdateprofileComponent() {
                 </div>
  
 
- 
-
-
                 <div className="registerField">
-                      <div className="registertext">Select State <small>*</small></div>
-                      <select  name="citystatename" className="registerSelect" value={ cityName || '' } onChange={onChangeField}>
+                        <div className="registertext">Select State <small>*</small></div>
+                      <select 
+                        name="state" 
+                        className="registerSelect" 
+                        value={ statename ||  formValue.state  || ''   }  
+                        onChange={onChangeField}
+                      >
+                        <option value="" title="">Select State</option>
                          {
-                            citystateList.map((val) => <option value={val.cityname} title={val.statename} key={val.id}>{val.statecityname}</option>)
+                            stateList.map((val) => <option value={val.name} title={val.id} key={val.id}>{val.name}</option>)
                          }
                       </select>
-                      <span className="registerError">{ formError.citystatename  ?  formError.citystatename : '' }</span> 
-                      <div className="registerLineText">Enter State name to pick nearby City</div>
+                      <span className="registerError">{formError.state  ?  formError.state : '' }</span>
                 </div>
                 
- 
+                { stateID !== '' ? 
+                <div className="registerField">
+                        <div className="registertext">Select City <small>*</small></div>
+                      <select 
+                        name="city" 
+                        className="registerSelect" 
+                        value={ cityname || formValue.city  || ''  }  
+                        onChange={onChangeField}
+                       >
+                        <option value="">Select City</option>
+                         {
+                            cityList.map((val) => <option value={val.name} key={val.id}>{val.name}</option>)
+                         }  
+                      </select>
+                      <span className="registerError">{ formError.city  ?  formError.city : '' } </span>
+                </div>
+                : null }
                 
 
                 <div className="registerField">
