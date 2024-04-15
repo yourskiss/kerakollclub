@@ -1,5 +1,5 @@
 "use client";
-import Image from 'next/image'
+import Image from 'next/image';
 import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
@@ -44,27 +44,28 @@ const DashboardComponent = () => {
           <div className="dashboard_earned_point">
                 <h2>You’ve earned</h2>
                 <p><CountUp duration={2} start={0}  delay={1}  end={rewardspoints} /></p>
-                <p>
-                    <Image src="/assets/images/three-start.png" width={100} height={88} alt="star" quality={100} />
-                    <em>reward<br />points</em>
-                </p>
+                <dl>
+                    <dd><Image className='dashStar1' src="/assets/images/dash-start.png" width={64} height={64} alt="star" quality={100} /></dd>
+                    <dt>
+                        <Image className='dashStar2' src="/assets/images/dash-start.png" width={24} height={24} alt="star" quality={100} />
+                        <br />
+                        <Image className='dashStar3' src="/assets/images/dash-start.png" width={30} height={30} alt="star" quality={100} />
+                        <em>reward<br />points</em>
+                    </dt>
+                    
+                </dl>
           </div>
-
           <div className="dashboard_content">
-              <section>
-                <Link href="/scanqrcode">
+              <section onClick={()=> push("/scanqrcode")}>
                     <aside><Image className='dashboard_scan_img' src="/assets/images/dash-qr.png" width={100} height={100} alt="qr" quality={100} /></aside>
                     <h2>Scan QR Code</h2>
                     <p>FOR YOUR KERAKOLL PRODUCTS</p>
-                </Link>
               </section>
-              <section className='dashboard_redeempointbg'>
-                <Link href="/redeempoints">
-                    <aside><Image src="/assets/images/redeempoints.png" width={99} height={115} alt="redeempoints" quality={100} /></aside>
+              <section className='dashboard_redeempointbg' onClick={()=> push("/redeempoints")}>
+                    <aside ><Image src="/assets/images/redeempoints.png" width={99} height={115} alt="redeempoints" quality={100} /></aside>
                     <h5><CountUp duration={2} start={0}  delay={1}  end={rewardspoints} /> <em>pt</em></h5>
                     <h2>Redeem Points</h2>
                     <p>IN YOUR CLUB WALLET</p>
-                </Link>
               </section>
           </div>
         </div>

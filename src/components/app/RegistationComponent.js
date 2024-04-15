@@ -10,13 +10,14 @@ import { toast } from 'react-toastify';
 import { setBearerToken } from "@/config/beararauth";
 import { isUserToken, isValideUser } from "@/config/userauth";
 import { ipaddress, osdetails, browserdetails  } from "../core/jio";
+import Select from "react-dropdown-select";
 
-
-
+ 
 export default function RegistationComponent() {
   const [step, setStep] = useState(1);
   const[loading, setLoading] = useState(false);
   const [citystateList, setCitystateList] = useState([]);
+  const [cityStateName, setCityStateName] = useState('');
   const [stateName, setStateName] = useState('');
   const [cityName, setCityName] = useState('');
   const[citystateErrors, setCitystateErrors] = useState('');
@@ -49,6 +50,7 @@ export default function RegistationComponent() {
   }, [isUT]);
 
  
+ 
   useEffect(() => {
     setLoading(true); 
     axios({
@@ -56,49 +58,57 @@ export default function RegistationComponent() {
       method: "GET",
       headers: { 'authorization': 'Bearer '+ setBT  },
     }).then((res) => {
-       // console.log(res);
-        setCitystateList(res.data);
         setLoading(false); 
+      //  console.log(res);
+        setCitystateList(res.data);
     }).catch((err) => {
         setLoading(false); 
         console.log(err.message);
     });
   }, []);
-
-  const handelcitystate = (e) =>
-  {            
-      setStateName(e.target.options[e.target.selectedIndex].title); 
-      setCityName(e.target.value); 
-      setCitystateErrors(''); 
-      // console.log(stateName, cityName);
-  } 
-  
+ 
+  const selectedValues = [""];
+  const handleOptionChange = (val) => {
+    console.log(val); 
+    if(val[0].label !== '' || val[0].label !== undefined){setCityStateName(val[0].label) }
+    if(val[0].statename !== '' || val[0].statename !== undefined){ setStateName(val[0].statename) }
+    if(val[0].cityname !== '' || val[0].cityname !== undefined){ setCityName(val[0].cityname) }
+    setCitystateErrors(''); 
+    console.log("onchange - ", cityStateName," ===== ", stateName, " ===== ", cityName);
+  };
+ 
  
   const backtostep = (e) => {
     e.preventDefault();
+    console.log("backtostep - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     if(step === 2) {setStep(1);}
     if(step === 3) {setStep(2);}
   } 
 
   const handleStep1 = (e) => {
     e.preventDefault();
+    console.log("handleStep1 - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     setfnErrors('');
     setlnErrors('');
-    if(firstname === '') { setfnErrors('First name is required.'); }
-    else if( lastname === '') { setlnErrors('Last name is required.'); }
+    if(firstname === '' && lastname === '') { setfnErrors('First name is required.'); setlnErrors('Last name is required.'); }
+    else if(firstname === '') { setfnErrors('First name is required.'); }
+    else if(lastname === '') { setlnErrors('Last name is required.'); }
     else { setStep(2); }
   } 
   const handleStep2 = (e) => {
     e.preventDefault();
+    console.log("handleStep2 - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     setAadhaarErrors(''); 
     setCitystateErrors(''); 
-    if(cityName === '') { setCitystateErrors('City is required.'); }
+    if(cityStateName  === '' && aadhaarinfo === '') { setCitystateErrors('City is required.'); setAadhaarErrors('Aadhaar is required.'); }
+    else if(cityStateName  === '') { setCitystateErrors('City is required.'); }
     else if(aadhaarinfo === '') { setAadhaarErrors('Aadhaar is required.'); }
     else if(aadhaarinfo .length !== 12) { setAadhaarErrors('Aadhaar must have at least 12 Digits.'); }
     else { setStep(3); }
   } 
   const handleStep3 = (e) => {
     e.preventDefault();
+    console.log("handleStep3 - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     const regexMobile = /^[6789][0-9]{9}$/i;
     setMobileErrors('');
     if(mobilenumber === '') { setMobileErrors('Mobile Number is required.'); }
@@ -170,6 +180,7 @@ export default function RegistationComponent() {
                 <div className="registerField">
                   <div className="registertext">First Name <small>*</small></div>
                   <input
+                    className="registerinput"
                     type="text"
                     name="firstname"
                     maxLength={20}
@@ -182,6 +193,7 @@ export default function RegistationComponent() {
                 <div className="registerField">
                   <div className="registertext">Last Name <small>*</small></div>
                   <input
+                    className="registerinput"
                     type="text"
                     name="lastname"
                     maxLength={20}
@@ -202,12 +214,20 @@ export default function RegistationComponent() {
               { step === 2 ? (<form onSubmit={handleStep2}>
                 <div className="registerField">
                       <div className="registertext">Select State <small>*</small></div>
-                      <select  name="citystatename" className="registerSelect" value={cityName} onChange={handelcitystate}>
-                        <option value="" title=""></option> 
-                         {
-                            citystateList.map((val) => <option value={val.cityname} title={val.statename} key={val.id}>{val.statecityname}</option>)
-                         }
-                      </select>
+                      <Select
+                        options={citystateList.map((entry) => ({
+                          label: entry.statecityname,
+                          value: entry.id,
+                          cityname:entry.cityname,
+                          statename:entry.statename
+                        }))}
+                        name="citystatename"
+                        Loading
+                        searchable 
+                        Clearable
+                        values={  citystateList.filter((data) => selectedValues.includes(data.label)) || cityStateName}
+                        onChange={(values) => handleOptionChange(values)}
+                      />
                       { citystateErrors && <span className="registerError"> {citystateErrors}</span> } 
                       <div className="registerLineText">Enter State name to pick nearby City</div>
                 </div>
@@ -216,6 +236,7 @@ export default function RegistationComponent() {
                 <div className="registerField">
                   <div className="registertext">Aadhaar Number <small>*</small></div>
                   <input
+                    className="registerinput"
                     type="number"
                     name="aadhaarinfo"
                     maxLength={12}
@@ -239,6 +260,7 @@ export default function RegistationComponent() {
                 <div className="registerField">
                   <div className="registertext">Mobile Number <small>*</small></div>
                   <input
+                    className="registerinput"
                     type="number"
                     name="mobilenumber"
                     maxLength={10}

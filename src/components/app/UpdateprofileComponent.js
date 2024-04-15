@@ -178,6 +178,7 @@ export default function UpdateprofileComponent() {
                 <ImageCropperUpdate picvalue={ filedata } filePath={getFilePath} />
                 <div style={{   position:"absolute", top:"-99999px", left:"-99999px"  }}>
                     <input 
+                        className="registerinput"
                         type="text" 
                         name="profilepictureurl" 
                         value={ filedata } 
@@ -189,6 +190,7 @@ export default function UpdateprofileComponent() {
                 <div className="registerField">
                     <div className="registertext">First name <small>*</small></div>
                     <input
+                        className="registerinput"
                         type="text"
                         name="firstname"
                         maxLength={25}
@@ -202,6 +204,7 @@ export default function UpdateprofileComponent() {
                 <div className="registerField">
                     <div className="registertext">Last name <small>*</small></div>
                     <input
+                        className="registerinput"
                         type="text"
                         name="lastname"
                         maxLength={25}
@@ -233,6 +236,7 @@ export default function UpdateprofileComponent() {
                 <div className="registerField">
                     <div className="registertext">Aadhaar Number <small>*</small></div>
                     <input
+                        className="registerinput"
                         type="number"
                         name="aadhaarinfo"
                         maxLength={12}

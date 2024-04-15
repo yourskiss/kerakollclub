@@ -253,7 +253,7 @@ export default function LoginComponent() {
                 <div className="registertext">Enter mobile number *</div>
                 <div className="registerinputformobile">
                   <span>+91-</span>
-                  <input type="number" name="mobile" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
+                  <input className="registerinput" type="number" name="mobile" maxLength={10} minLength={10} value={mobileValues} onChange={mobileChange} disabled={isDisabled} onInput={onInputmaxLength} />
                 </div>
                 { mobileError && <span className='registerError'>{mobileError}</span> } 
               </div>
