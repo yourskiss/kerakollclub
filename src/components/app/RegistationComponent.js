@@ -16,8 +16,7 @@ import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 export default function RegistationComponent() {
   const [step, setStep] = useState(1);
   const[loading, setLoading] = useState(false);
-
-  const [csID, setCSID] = useState(null);
+  
   const [cityStateName, setCityStateName] = useState('');
   const [stateName, setStateName] = useState('');
   const [cityName, setCityName] = useState('');
@@ -54,21 +53,16 @@ export default function RegistationComponent() {
  
  
   
-  const handleOptionChange = (id, sc, st, ct) => {
-     setCSID(id);
+  const handleOptionChange = (sc, st, ct) => {
      setCityStateName(sc);
      setStateName(st);
      setCityName(ct);
-     console.log("page - ", csID, " - ", cityStateName, " - ", stateName, " - ", cityName);
+    // console.log("handel change - ", cityStateName, " - ", stateName, " - ", cityName);
   };
  
  
   const backtostep = (e) => {
     e.preventDefault();
-    setCSID('');
-    setCityStateName('');
-    setStateName('');
-    setCityName('');
     if(step === 2) {setStep(1);}
     if(step === 3) {setStep(2);}
   } 
@@ -198,11 +192,11 @@ export default function RegistationComponent() {
               <>
               { step === 2 ? (<form onSubmit={handleStep2}>
                 
-
+                
                 <div className="registerField">
                       <div className="registertext">Select State <small>*</small></div>
                       <ErrorBoundary>
-                          <CityStateComponent scChange={handleOptionChange} defaultSC={csID} />
+                          <CityStateComponent scChange={handleOptionChange} nameSC={cityStateName} nameS={stateName} nameC={cityName} />
                       </ErrorBoundary>
                       { citystateErrors && <span className="registerError"> {citystateErrors}</span> } 
                       <div className="registerLineText">Enter State name to pick nearby City</div>
