@@ -194,7 +194,7 @@ export default function RegistationComponent() {
                 
                 
                 <div className="registerField">
-                      <div className="registertext">Select State <small>*</small></div>
+                      <div className="registertext">Select City <small>*</small></div>
                       <ErrorBoundary>
                           <CityStateComponent scChange={handleOptionChange} nameSC={cityStateName} nameS={stateName} nameC={cityName} />
                       </ErrorBoundary>

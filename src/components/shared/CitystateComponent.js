@@ -21,12 +21,11 @@ export default function CityStateComponent({scChange, nameSC, nameS, nameC}) {
       }, [setBT]);
 
       const onchangevalue = (val) => {
-        let id = val.value;
         let sc = val.label;
         let ct = val.cityname;
         let st = val.statename;
-        scChange(id, sc, st, ct);
-        console.log("oncomponnent - ", val, " - ", sc, " - ", st, " - ", ct);
+        scChange(sc, st, ct);
+       // console.log("oncomponnent - ", val, " - ", sc, " - ", st, " - ", ct);
       }
   return (
  <>
