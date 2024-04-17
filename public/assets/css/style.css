@@ -207,13 +207,11 @@ body { background-color: #f5f0eb; margin:0;padding:0;box-sizing:border-box;line-
 .reactcropperbutton:hover { background: #383C3D;  color: #fff;  border-color: #AFCDAF; transition: all 0.5s ease-in; }
  
 
+.searchableContainer { float: left;  width: 100%;  padding:0;  border: 0; margin:0; padding: 0; background-color:none; }
+.searchable__control { padding: 0.5rem !important; border: 0 !important; border-bottom: solid 2px #F5F0EB !important; outline: none !important; background: transparent !important; border-radius: 0 !important; box-shadow: none !important;}
+.searchable__value-container { margin: 0 !important; padding: 0 !important; }
+.searchable__placeholder, .searchable__single-value, .searchable__input-container {  margin: 0 !important; padding: 0 !important; text-align: left !important;font-weight: 500 !important; color: rgba(245, 240, 235, 0.6) !important;font-size: 20px !important; }
 
-.react-dropdown-select { float: left;  width: 100%;  padding:0;  border: 0; border:0;  }
-.react-dropdown-select input[name='citystatename'] { position: absolute; left: -9999px; top: -9999px; }
-.react-dropdown-select-content {  float: left;  width: 100%;  padding: 0.5rem 1rem;  border: 0; border-bottom: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235,0.6);  font-size: 24px;  box-shadow:none; box-sizing: border-box;}
-.react-dropdown-select-content input { display: inline-block; }
-.react-dropdown-select-dropdown {  width: 100%;  text-align: left; text-align: left; font-weight: 500;  color: #000;  font-size:18px;  }
-.react-dropdown-select-item { border-bottom: solid 1px #999;   }
 
 /* ################### approvalcontainer ################### */
 .approvalcontainer { width: 100%; float: left; margin-top: 1rem; }

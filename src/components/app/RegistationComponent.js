@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import Image from 'next/image'
 import axios from "axios";
 import HeaderComponent from '../shared/HeaderComponent';
 import Loader from '../shared/LoaderComponent';
@@ -10,17 +9,20 @@ import { toast } from 'react-toastify';
 import { setBearerToken } from "@/config/beararauth";
 import { isUserToken, isValideUser } from "@/config/userauth";
 import { ipaddress, osdetails, browserdetails  } from "../core/jio";
-import Select from "react-dropdown-select";
+import CityStateComponent from "../shared/CitystateComponent";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
  
 export default function RegistationComponent() {
   const [step, setStep] = useState(1);
   const[loading, setLoading] = useState(false);
+
   const [citystateList, setCitystateList] = useState([]);
   const [cityStateName, setCityStateName] = useState('');
   const [stateName, setStateName] = useState('');
   const [cityName, setCityName] = useState('');
   const[citystateErrors, setCitystateErrors] = useState('');
+
   const[firstname, setFirstname] = useState('');
   const[fnErrors, setfnErrors] = useState('');
   const[lastname, setLastname] = useState('');
@@ -51,43 +53,23 @@ export default function RegistationComponent() {
 
  
  
-  useEffect(() => {
-    setLoading(true); 
-    axios({
-      url: process.env.BASE_URL + "CommonUtility/StateCity",
-      method: "GET",
-      headers: { 'authorization': 'Bearer '+ setBT  },
-    }).then((res) => {
-        setLoading(false); 
-      //  console.log(res);
-        setCitystateList(res.data);
-    }).catch((err) => {
-        setLoading(false); 
-        console.log(err.message);
-    });
-  }, []);
- 
-  const selectedValues = [""];
-  const handleOptionChange = (val) => {
-    console.log(val); 
-    if(val[0].label !== '' || val[0].label !== undefined){setCityStateName(val[0].label) }
-    if(val[0].statename !== '' || val[0].statename !== undefined){ setStateName(val[0].statename) }
-    if(val[0].cityname !== '' || val[0].cityname !== undefined){ setCityName(val[0].cityname) }
-    setCitystateErrors(''); 
-    console.log("onchange - ", cityStateName," ===== ", stateName, " ===== ", cityName);
+  
+  const handleOptionChange = (sc, st, ct) => {
+     setCityStateName(sc);
+     setStateName(st);
+     setCityName(ct);
+     console.log("page- ", cityStateName, stateName, cityName);
   };
  
  
   const backtostep = (e) => {
     e.preventDefault();
-    console.log("backtostep - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     if(step === 2) {setStep(1);}
     if(step === 3) {setStep(2);}
   } 
 
   const handleStep1 = (e) => {
     e.preventDefault();
-    console.log("handleStep1 - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     setfnErrors('');
     setlnErrors('');
     if(firstname === '' && lastname === '') { setfnErrors('First name is required.'); setlnErrors('Last name is required.'); }
@@ -97,7 +79,6 @@ export default function RegistationComponent() {
   } 
   const handleStep2 = (e) => {
     e.preventDefault();
-    console.log("handleStep2 - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     setAadhaarErrors(''); 
     setCitystateErrors(''); 
     if(cityStateName  === '' && aadhaarinfo === '') { setCitystateErrors('City is required.'); setAadhaarErrors('Aadhaar is required.'); }
@@ -108,7 +89,6 @@ export default function RegistationComponent() {
   } 
   const handleStep3 = (e) => {
     e.preventDefault();
-    console.log("handleStep3 - ", cityStateName," ===== ", stateName, " ===== ", cityName);
     const regexMobile = /^[6789][0-9]{9}$/i;
     setMobileErrors('');
     if(mobilenumber === '') { setMobileErrors('Mobile Number is required.'); }
@@ -212,26 +192,17 @@ export default function RegistationComponent() {
               
               <>
               { step === 2 ? (<form onSubmit={handleStep2}>
+                
+
                 <div className="registerField">
                       <div className="registertext">Select State <small>*</small></div>
-                      <Select
-                        options={citystateList.map((entry) => ({
-                          label: entry.statecityname,
-                          value: entry.id,
-                          cityname:entry.cityname,
-                          statename:entry.statename
-                        }))}
-                        name="citystatename"
-                        Loading
-                        searchable 
-                        Clearable
-                        values={  citystateList.filter((data) => selectedValues.includes(data.label)) || cityStateName}
-                        onChange={(values) => handleOptionChange(values)}
-                      />
+                      <ErrorBoundary>
+                          <CityStateComponent scChange={handleOptionChange} />
+                      </ErrorBoundary>
                       { citystateErrors && <span className="registerError"> {citystateErrors}</span> } 
                       <div className="registerLineText">Enter State name to pick nearby City</div>
                 </div>
- 
+              
 
                 <div className="registerField">
                   <div className="registertext">Aadhaar Number <small>*</small></div>

@@ -20,7 +20,7 @@ const setBearerToken = () => {
   useEffect(() => 
   { 
       if(!isBearerToken)
-      {
+      { 
           axios({
               url: process.env.BASE_URL +"ApiAuth/authtoken",
               method: "POST",
