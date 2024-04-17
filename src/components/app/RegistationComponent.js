@@ -17,7 +17,7 @@ export default function RegistationComponent() {
   const [step, setStep] = useState(1);
   const[loading, setLoading] = useState(false);
 
-  const [citystateList, setCitystateList] = useState([]);
+  const [csID, setCSID] = useState(null);
   const [cityStateName, setCityStateName] = useState('');
   const [stateName, setStateName] = useState('');
   const [cityName, setCityName] = useState('');
@@ -54,16 +54,21 @@ export default function RegistationComponent() {
  
  
   
-  const handleOptionChange = (sc, st, ct) => {
+  const handleOptionChange = (id, sc, st, ct) => {
+     setCSID(id);
      setCityStateName(sc);
      setStateName(st);
      setCityName(ct);
-     console.log("page- ", cityStateName, stateName, cityName);
+     console.log("page - ", csID, " - ", cityStateName, " - ", stateName, " - ", cityName);
   };
  
  
   const backtostep = (e) => {
     e.preventDefault();
+    setCSID('');
+    setCityStateName('');
+    setStateName('');
+    setCityName('');
     if(step === 2) {setStep(1);}
     if(step === 3) {setStep(2);}
   } 
@@ -197,7 +202,7 @@ export default function RegistationComponent() {
                 <div className="registerField">
                       <div className="registertext">Select State <small>*</small></div>
                       <ErrorBoundary>
-                          <CityStateComponent scChange={handleOptionChange} />
+                          <CityStateComponent scChange={handleOptionChange} defaultSC={csID} />
                       </ErrorBoundary>
                       { citystateErrors && <span className="registerError"> {citystateErrors}</span> } 
                       <div className="registerLineText">Enter State name to pick nearby City</div>
