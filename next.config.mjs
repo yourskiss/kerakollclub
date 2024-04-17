@@ -7,7 +7,9 @@ const nextConfig = {
           COUPON_URL: "http://localhost:62819/coupon.aspx",
           COUPON_URL2 : "http://127.0.0.1:3000/",
           COUPON_URL3 : "https://kerakollclub.vercel.app/",
-          COUPON_URL4 : "https://kerakoll.vercel.app/"
+          COUPON_URL4 : "https://kerakoll.vercel.app/",
+          COUPON_URL5 : "http://testclub.kerakoll.com/",
+          COUPON_URL6 : "https://testclub.kerakoll.com/"
         }
 };
 

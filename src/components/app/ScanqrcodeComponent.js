@@ -36,7 +36,7 @@ export default function ScanqrcodeComponent() {
 
   useEffect(() => {
       const sdURL = scandata.split("?") || '';
-      if(sdURL[0] === process.env.COUPON_URL || sdURL[0] === process.env.COUPON_URL2 || sdURL[0] === process.env.COUPON_URL3)
+      if(sdURL[0] === process.env.COUPON_URL || sdURL[0] === process.env.COUPON_URL2 || sdURL[0] === process.env.COUPON_URL3 || sdURL[0] === process.env.COUPON_URL4 || sdURL[0] === process.env.COUPON_URL5 || sdURL[0] === process.env.COUPON_URL6)
       {
           const couponvalue = sdURL[1].split("=");
           setCouponecode(couponvalue[1]);
