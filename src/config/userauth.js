@@ -1,10 +1,8 @@
 import Cookies from 'js-cookie';
-import axios from "axios";
 import { decryptText } from "@/config/crypto";
 import { useEffect, useState } from 'react';
-import { setBearerToken } from './beararauth';
-
-
+import { _get } from "@/config/apiClient";
+ 
 const getUserID = () => {
   const isToken = !!Cookies.get('usertoken');
   const isValue = Cookies.get('usertoken');
@@ -44,7 +42,6 @@ const isValideUser = () => {
     const [profileuseid,setProfileuseid] = useState(0);
     const [profileusemobile,setProfileusemobile] = useState(0);
     const [userAuth,setUserAuth] = useState(false);
-    const setBT  = setBearerToken();
     const isUT = isUserToken();
     const userID = getUserID();
     const userMobile = getUserMobile(); 
@@ -52,11 +49,8 @@ const isValideUser = () => {
         useEffect(() => {
             if((isUT) && (userID !== undefined || userID !== null || userID !== '') && (userMobile !== undefined || userMobile !== null || userMobile !== ''))
             {
-              axios({
-                url: process.env.BASE_URL + "Customer/UserInfo?userid=0&phonenumber="+ userMobile,
-                method: "GET",
-                headers: { 'authorization': 'Bearer '+ setBT },
-              }).then((res) => {
+              _get("Customer/UserInfo?userid=0&phonenumber="+ userMobile)
+              .then((res) => {
                   // console.log("auth res-", res);
                   setProfileuseid(res.data.result.userid);
                   setProfileusemobile(res.data.result.phonenumber);

@@ -1,22 +1,20 @@
 "use client";
-import axios from "axios";
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import HeaderComponent from '../shared/HeaderComponent';
 import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
-import { setBearerToken } from "@/config/beararauth";
 import Loader from "../shared/LoaderComponent";
 import { ipaddress, osdetails, browserdetails, geoLatitude, geoLongitude } from "../core/jio";
 import {  toast } from 'react-toastify';
 import { isCouponeCode, getCouponeCode } from "@/config/validecoupone";
+import { _post } from "@/config/apiClient";
 
 export default function GetcouponeComponent() {
  
   const [loading, setLoading] = useState(false);
   const [couponecode, setCouponecode] = useState('');
   const { push } = useRouter();
-  const setBT = setBearerToken();
   const isUT = isUserToken();
   const isUser = isValideUser();
   const userID = getUserID();
@@ -48,12 +46,8 @@ export default function GetcouponeComponent() {
       browserdetails: browserInfo
     }
    // console.log(qrdata);
-        axios({
-          url: process.env.BASE_URL + "Customer/ValidateCouponAndSave",
-          method: "POST",
-          headers: { 'authorization': 'Bearer '+ setBT  },
-          data: qrdata,
-        }).then((res) => {
+        _post("Customer/ValidateCouponAndSave", qrdata)
+        .then((res) => {
           setLoading(false);
           // console.log(res)
           res.data.result === null ? toast.error(res.data.resultmessage) : (toast.success("Coupon Successfully Validated."), Cookies.remove('couponecodecookies'),  sessionStorage.setItem("pointid", res.data.result[0].pointid), push("/earnedpoint"));

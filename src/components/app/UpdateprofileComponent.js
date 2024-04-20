@@ -1,22 +1,20 @@
 "use client";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
 import Loader from "../shared/LoaderComponent";
-import {  setBearerToken } from "@/config/beararauth";
 import { getUserID, getUserMobile, isUserToken, isValideUser } from "@/config/userauth";
 import { toast } from 'react-toastify';
 import ImageCropperUpdate from "../core/ImageCropperUpdate";
 import { ipaddress, osdetails, browserdetails  } from "../core/jio";
 import CitystateUpdateComponent from "../shared/CitystateUpdateComponent";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { _get, _post } from "@/config/apiClient";
 
 export default function UpdateprofileComponent() {
     const[loading, setLoading] = useState(false);
     const[ismount, setIsmount] = useState(false);
     const { push } = useRouter();
-    const setBT = setBearerToken()
     const isUT = isUserToken();
     const isUser = isValideUser();
     const userID = getUserID();
@@ -46,11 +44,8 @@ export default function UpdateprofileComponent() {
 
     useEffect(() => {
         setLoading(true);
-        axios({
-            url: process.env.BASE_URL + "Customer/UserInfo?userid=0&phonenumber="+ userMobile,
-            method: "GET",
-            headers: { 'authorization': 'Bearer '+ setBT },
-        }).then((res) => {
+        _get("Customer/UserInfo?userid=0&phonenumber="+ userMobile)
+        .then((res) => {
           //  console.log("get---", res.data.result);
             setLoading(false);
             setData(true);
@@ -131,12 +126,8 @@ export default function UpdateprofileComponent() {
           }
          // console.log("datafinal - ",datafinal);
             setLoading(true);
-            axios({
-                url: process.env.BASE_URL + "Customer/SaveUser",
-                method: "POST",
-                headers: { 'authorization': 'Bearer '+ setBT  },
-                data: datafinal,
-            }).then((res) => {
+            _post("Customer/SaveUser", datafinal)
+            .then((res) => {
                // console.log(res);
                 setLoading(false);
                 localStorage.setItem('userprofilepic', res.data.result.profilepictureurl);

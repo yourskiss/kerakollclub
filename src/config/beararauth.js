@@ -1,6 +1,5 @@
-import Cookies from 'js-cookie';
 import axios from "axios";
-import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 const setBeararCookies = (name, val) => {
    return Cookies.set(name, val, { expires: new Date(new Date().getTime() + 3600000), secure: true });
@@ -17,8 +16,6 @@ const getBearerToken = () => {
 
 const setBearerToken = () => {
   const isBearerToken = !!Cookies.get('bearertoken');
-  useEffect(() => 
-  { 
       if(!isBearerToken)
       { 
           axios({
@@ -37,10 +34,8 @@ const setBearerToken = () => {
               }
           }).catch((err) => {
               console.log(err.message);
-          });
+          }); 
       }
-  }, [isBearerToken]);
-  return Cookies.get('bearertoken');
+      return Cookies.get('bearertoken');
 }
- 
 export {isBearerToken, getBearerToken, setBearerToken, setBeararCookies};

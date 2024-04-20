@@ -50,11 +50,12 @@ useEffect(() => {
   }
 
   const logoutnow = () => {
-      Cookies.remove('usertoken');
       localStorage.removeItem("userprofilepic");
       localStorage.removeItem("userprofilename");
       localStorage.removeItem('verificationstatus')
       Cookies.remove('couponecodecookies');
+      sessionStorage.removeItem("pointid");
+      Cookies.remove('usertoken');
       setUsername('Demmy Account');
       setUserdp('/assets/images/profile/dp.png');
       push("/") ;

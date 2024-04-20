@@ -1,14 +1,13 @@
 "use client";
-import axios from "axios";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
-import { setBearerToken } from "@/config/beararauth";
 import Loader from "../shared/LoaderComponent";
 import Link from 'next/link';
 import Image from 'next/image'
 import CountUp from 'react-countup';
 import TotalrewardpointsComponent from '../shared/TotalrewardpointsComponent';
+import { _get } from "@/config/apiClient";
 
 export default function EarnedComponent() {
 
@@ -16,7 +15,6 @@ export default function EarnedComponent() {
     const [pointnumber, setPointnumber] = useState(0);
     const [pointID, setPointID] = useState('');
     const { push } = useRouter();
-    const setBT = setBearerToken();
     const isUT = isUserToken();
     const isUser = isValideUser();
     const userID = getUserID();
@@ -33,12 +31,9 @@ export default function EarnedComponent() {
    
     useEffect(() => {
         setLoading(true);
-        axios({
-            url: process.env.BASE_URL + "Customer/RewardPointInfo?pointid="+pointID,
-            method: "GET",
-            headers: { 'authorization': 'Bearer '+ setBT },
-        }).then((res) => {
-            console.log(" response - ", res);
+        _get("Customer/RewardPointInfo?pointid="+pointID)
+        .then((res) => {
+          //  console.log(" response - ", res);
             setPointnumber(res.data.result[0].earnedpoints);
             setLoading(false);
         }).catch((error) => {

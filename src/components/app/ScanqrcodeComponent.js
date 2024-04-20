@@ -1,16 +1,15 @@
 "use client";
-import axios from "axios";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import QrReader from '../core/QrReader';
 import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
-import { setBearerToken } from "@/config/beararauth";
 import Loader from "../shared/LoaderComponent";
 import { ipaddress, osdetails, browserdetails, geoLatitude, geoLongitude } from "../core/jio";
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import CountUp from 'react-countup';
 import TotalrewardpointsComponent from '../shared/TotalrewardpointsComponent';
+import { _post } from "@/config/apiClient";
 
 export default function ScanqrcodeComponent() {
   const [loading, setLoading] = useState(false);
@@ -18,7 +17,6 @@ export default function ScanqrcodeComponent() {
   const [scandata, setScandata] = useState('');
   const [couponecode, setCouponecode] = useState('');
   const { push } = useRouter();
-  const setBT = setBearerToken();
   const isUT = isUserToken();
   const isUser = isValideUser();
   const userID = getUserID();
@@ -67,12 +65,8 @@ export default function ScanqrcodeComponent() {
    // console.log(qrdata);
     if(couponecode !== '')
     {
-        axios({
-          url: process.env.BASE_URL + "Customer/ValidateCouponAndSave",
-          method: "POST",
-          headers: { 'authorization': 'Bearer '+ setBT  },
-          data: qrdata,
-        }).then((res) => {
+        _post("Customer/ValidateCouponAndSave", qrdata)
+        .then((res) => {
           setLoading(false);
           console.log(res)
           if(res.data.result === null)

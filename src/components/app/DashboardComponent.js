@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
 import {  isUserToken } from "@/config/userauth";
-import Link from 'next/link';
 import TotalrewardpointsComponent from '../shared/TotalrewardpointsComponent';
 import CountUp from 'react-countup';
 import Slider from "react-slick";

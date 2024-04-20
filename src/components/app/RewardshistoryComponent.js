@@ -1,13 +1,13 @@
 "use client";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
 import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
-import { setBearerToken } from '@/config/beararauth';
 import Loader from "../shared/LoaderComponent";
 import TotalrewardpointsComponent from '../shared/TotalrewardpointsComponent';
 import CountUp from 'react-countup';
+import { _get } from "@/config/apiClient";
+
 export default function RewardshistoryComponent () {
   const [loading, setLoading] = useState(false);
   const [pointhistory, setPointhistory] = useState({});
@@ -15,18 +15,14 @@ export default function RewardshistoryComponent () {
   const { push } = useRouter();
   const isUT = isUserToken();
   const isUser = isValideUser();
-  const setBT = setBearerToken();
   const userID = getUserID();
    
   
   useEffect(() => {
   if(!isUT) { push("/"); return  }
     setLoading(true);
-    axios({
-        url: process.env.BASE_URL + "Customer/UserRewardPointsHistory?userid="+ userID,
-        method: "GET",
-        headers: { 'authorization': 'Bearer '+ setBT },
-    }).then((res) => {
+    _get("Customer/UserRewardPointsHistory?userid="+ userID)
+    .then((res) => {
        // console.log("UserRewardPointsHistory - response - ", res);
         setLoading(false);
         if(res.data.result.length !== 0)

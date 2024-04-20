@@ -1,24 +1,19 @@
 "use client";
-import axios from "axios";
 import Select from 'react-select';
-import { setBearerToken } from "@/config/beararauth";
 import { useEffect, useState } from "react";
+import { _get } from "@/config/apiClient";
 
 export default function CityStateComponent({scChange, nameSC, nameS, nameC}) {
-    const setBT = setBearerToken();
     const [citystateList, setCitystateList] = useState([]);
     useEffect(() => {
-        axios({
-          url: process.env.BASE_URL + "CommonUtility/StateCity",
-          method: "GET",
-          headers: { 'authorization': 'Bearer '+ setBT },
-        }).then((res) => {
+        _get("CommonUtility/StateCity")
+        .then((res) => {
            // console.log("city state - ", res);
             setCitystateList(res.data);
         }).catch((err) => {
             console.log(err.message);
         });
-      }, [setBT]);
+      }, []);
 
       const onchangevalue = (val) => {
         let sc = val.label;

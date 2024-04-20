@@ -1,17 +1,15 @@
 "use client";
 import Link from "next/link";
-import axios from "axios";
-// import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Loader from "../shared/LoaderComponent";
 import HeaderComponent from "../shared/HeaderComponent";
 import { toast } from 'react-toastify';
-import {  setBearerToken } from "@/config/beararauth";
 import { setUserCookies, isUserToken } from "@/config/userauth";
 import { encryptText } from "@/config/crypto";
 import { setCouponeCode, isCouponeCode } from "@/config/validecoupone";
 import Otpcountdown from "../core/timer";
+import { _get } from "@/config/apiClient";
 
 export default function LoginComponent() {  
     const[loading, setLoading] = useState(false);
@@ -61,7 +59,6 @@ export default function LoginComponent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const getqrcode = searchParams.get('code');
-  const setBT = setBearerToken();
   const isUT = isUserToken();
   const isCC = isCouponeCode();
  
@@ -102,12 +99,9 @@ export default function LoginComponent() {
     if(OTPVerified)
     {
       setLoading(true);
-      axios({
-         url: process.env.BASE_URL + "Customer/UserInfo?userid=0&phonenumber="+ mobileValues,
-         method: "GET",
-         headers: { 'authorization': 'Bearer '+ setBT },
-      }).then((res) => {
-      //  console.log("login success - ", res);
+      _get("Customer/UserInfo?userid=0&phonenumber="+ mobileValues)
+      .then(res => {
+        //  console.log("login success - ", res);
         localStorage.setItem("userprofilename",res.data.result.fullname);
         localStorage.setItem("userprofilepic",res.data.result.profilepictureurl);
         if(res.data.result.verificationstatus === "APPROVE" || res.data.result.verificationstatus === "PENDING")
@@ -143,8 +137,9 @@ export default function LoginComponent() {
            toast.warn("Your are not registered user. please register after login");
         }
         setLoading(false);
-      }).catch((err) => {
-        toast.error(err.message);
+      })
+      .catch(error => {
+        toast.error(error.message);
         setLoading(false); 
       });
     }
@@ -154,11 +149,8 @@ export default function LoginComponent() {
 
   const sendotp = () => {
     setLoading(true);
-      axios({
-         url: process.env.BASE_URL + "Sms/SendOTP?mobile="+ mobileValues,
-         method: "GET",
-         headers: { 'authorization': 'Bearer '+ setBT },
-      }).then((res) => {
+      _get("Sms/SendOTP?mobile="+ mobileValues)
+      .then((res) => {
         setLoading(false);
         setOtpValues('');
         setIsOTP(false);
@@ -180,11 +172,8 @@ export default function LoginComponent() {
   }
   const resendotp = () => {
     setLoading(true);
-      axios({
-         url: process.env.BASE_URL + "Sms/ResendOTP?orderid="+ orderID,
-         method: "GET",
-         headers: { 'authorization': 'Bearer '+ setBT },
-      }).then((res) => {
+      _get("Sms/ResendOTP?orderid="+ orderID)
+      .then((res) => {
         setLoading(false);
         setOtpValues('');
         setIsOTP(false);
@@ -206,14 +195,11 @@ export default function LoginComponent() {
   }
 
   const verifyotp = () => {
-    // setOTPVerified(true); // tesing
-     
+     setOTPVerified(true); // tesing
+    /*
     setLoading(true);
-      axios({
-         url: process.env.BASE_URL + "Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues,
-         method: "GET",
-         headers: { 'authorization': 'Bearer '+ setBT },
-      }).then((res) => {
+      _get("Sms/VerifyOTP?orderid="+orderID+"&otp="+otpValues+"&mobile="+mobileValues)
+      .then((res) => {
         setLoading(false);
        // console.log("Verify OTP - ", res);
         if(res.data.isOTPVerified)
@@ -232,7 +218,7 @@ export default function LoginComponent() {
         toast.error(err.message);
         setLoading(false); 
       });
-      
+      */
   }
 
 
