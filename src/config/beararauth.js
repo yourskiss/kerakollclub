@@ -1,10 +1,19 @@
-import axios from "axios";
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
-const setBeararCookies = (name, val) => {
-   return Cookies.set(name, val, { expires: new Date(new Date().getTime() + 3600000), secure: true });
-}
- 
+const apiURL = process.env.BASE_URL;
+const apiUsername = process.env.API_USERNAME;
+const apiPassword = process.env.API_PASSWORD;
+
+const bearerApiClient = axios.create({
+  baseURL: apiURL,
+  headers: {  "Content-Type": "application/json" },
+});
+const _bearer_post = (url, data = {}, config = {}) => {
+  return bearerApiClient.post(url, data, config);
+};
+const _bearer_data = JSON.stringify({ "userid": apiUsername, "password": apiPassword });
+
 const isBearerToken = () => {
   const isBearer = !!Cookies.get('bearertoken');
   return isBearer;
@@ -13,20 +22,15 @@ const getBearerToken = () => {
   const isValue = Cookies.get('bearertoken');
   return isValue;
 }
-
 const setBearerToken = () => {
   const isBearerToken = !!Cookies.get('bearertoken');
       if(!isBearerToken)
       { 
-          axios({
-              url: process.env.BASE_URL +"ApiAuth/authtoken",
-              method: "POST",
-              headers: {  "Content-Type": "application/json" },
-              data: JSON.stringify({ "userid": process.env.API_USERNAME, "password": process.env.API_PASSWORD }),
-          }).then((res) => {
+        _bearer_post("ApiAuth/authtoken", _bearer_data)
+        .then((res) => {
               if(res.status == 200) 
               {
-                setBeararCookies('bearertoken', res.data.token);
+                Cookies.set('bearertoken', res.data.token, { expires: new Date(new Date().getTime() + 3600000), secure: true })
               }
               else 
               {
@@ -38,4 +42,4 @@ const setBearerToken = () => {
       }
       return Cookies.get('bearertoken');
 }
-export {isBearerToken, getBearerToken, setBearerToken, setBeararCookies};
+export {_bearer_post, isBearerToken, getBearerToken, setBearerToken};
