@@ -12,13 +12,12 @@ import { useEffect, useState } from "react";
 export default function ApprovalComponent() {
     const[username, setUsername] = useState('');
     const[userdp, setUserdp] = useState('');
-    const isUT = isUserToken();
+    const isUser = isUserToken();
     const { push } = useRouter();
+    
     useEffect(() => {
-      if(isUT) { push("/dashboard"); return }
- 
- 
-     }, [isUT]);
+      if(isUser) { push("/dashboard"); return }
+     }, [isUser]);
    
     useEffect(() => {
         if (typeof localStorage !== 'undefined') 

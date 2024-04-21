@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
-import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
+import { getUserID, isUserToken } from "@/config/userauth";
 import Loader from "../shared/LoaderComponent";
 import TotalrewardpointsComponent from '../shared/TotalrewardpointsComponent';
 import CountUp from 'react-countup';
@@ -13,13 +13,12 @@ export default function RewardshistoryComponent () {
   const [pointhistory, setPointhistory] = useState({});
   const [nodata, setNodata] = useState('');
   const { push } = useRouter();
-  const isUT = isUserToken();
-  const isUser = isValideUser();
+  const isUser = isUserToken();
   const userID = getUserID();
    
   
   useEffect(() => {
-  if(!isUT) { push("/"); return  }
+  if(!isUser) { push("/"); return  }
     setLoading(true);
     _get("Customer/UserRewardPointsHistory?userid="+ userID)
     .then((res) => {
@@ -39,7 +38,7 @@ export default function RewardshistoryComponent () {
         setNodata(error.message);
     });
 
-  }, [isUT]);
+  }, [isUser]);
 
  const points = TotalrewardpointsComponent();
   return (

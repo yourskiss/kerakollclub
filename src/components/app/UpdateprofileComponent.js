@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import HeaderComponent from "../shared/HeaderComponent";
 import Loader from "../shared/LoaderComponent";
-import { getUserID, getUserMobile, isUserToken, isValideUser } from "@/config/userauth";
+import { getUserID, getUserMobile, isUserToken } from "@/config/userauth";
 import { toast } from 'react-toastify';
 import ImageCropperUpdate from "../core/ImageCropperUpdate";
 import { ipaddress, osdetails, browserdetails  } from "../core/jio";
@@ -15,8 +15,7 @@ export default function UpdateprofileComponent() {
     const[loading, setLoading] = useState(false);
     const[ismount, setIsmount] = useState(false);
     const { push } = useRouter();
-    const isUT = isUserToken();
-    const isUser = isValideUser();
+    const isUser = isUserToken();
     const userID = getUserID();
     const userMobile = getUserMobile();
     const ipInfo = ipaddress();
@@ -38,9 +37,9 @@ export default function UpdateprofileComponent() {
     const [cityName, setCityName] = useState('');
 
     useEffect(() => {
-        if(!isUT) { push("/"); return  }
+        if(!isUser) { push("/"); return  }
         setIsmount(true);
-    }, [isUT]);
+    }, [isUser]);
 
     useEffect(() => {
         setLoading(true);

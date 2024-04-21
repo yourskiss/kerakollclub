@@ -3,13 +3,12 @@ import Image from 'next/image'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { isUserToken, isValideUser } from "@/config/userauth";
+import { isUserToken } from "@/config/userauth";
 import Link from 'next/link';
 import { toast } from 'react-toastify';
  
 export default  function HeaderComponent() {
-  const isUT = isUserToken();
-  const isUser = isValideUser();
+  const isUser = isUserToken();
   const { push } = useRouter();
   const [headclass, setHeadClass] = useState('headersection');
   const [logout, setLogout] = useState(false);
@@ -18,15 +17,12 @@ export default  function HeaderComponent() {
   const[userstatus, setUserstatus] = useState('');
  
 useEffect(() => {
-    if(isUT)
-    {
+    if(isUser){
       setHeadClass('headersection headerinner');
-    }
-    else
-    {
+    }else{
       setHeadClass('headersection');
     }
-}, [isUT]);
+}, [isUser]);
 
 useEffect(() => {
   if (typeof localStorage !== 'undefined') 
@@ -40,7 +36,6 @@ useEffect(() => {
       setUsername('Demmy Account');
       setUserdp('/assets/images/profile/dp.png');
   }
-
 }, []);
 
 

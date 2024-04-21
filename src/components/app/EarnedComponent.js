@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
+import { isUserToken } from "@/config/userauth";
 import Loader from "../shared/LoaderComponent";
 import Link from 'next/link';
 import Image from 'next/image'
@@ -15,19 +15,17 @@ export default function EarnedComponent() {
     const [pointnumber, setPointnumber] = useState(0);
     const [pointID, setPointID] = useState('');
     const { push } = useRouter();
-    const isUT = isUserToken();
-    const isUser = isValideUser();
-    const userID = getUserID();
+    const isUser = isUserToken();
     const rewardspoints = TotalrewardpointsComponent();
    
 
     useEffect(() => {
-      if(!isUT) { push("/"); return  }
+      if(!isUser) { push("/"); return  }
       if(typeof sessionStorage !== 'undefined')
       {
         setPointID(sessionStorage.getItem("pointid"));
       }
-    }, [isUT]);
+    }, [isUser]);
    
     useEffect(() => {
         setLoading(true);

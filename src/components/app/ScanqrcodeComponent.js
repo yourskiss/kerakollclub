@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import QrReader from '../core/QrReader';
-import { getUserID, isUserToken, isValideUser } from "@/config/userauth";
+import { getUserID, isUserToken } from "@/config/userauth";
 import Loader from "../shared/LoaderComponent";
 import { ipaddress, osdetails, browserdetails, geoLatitude, geoLongitude } from "../core/jio";
 import { toast } from 'react-toastify';
@@ -17,8 +17,7 @@ export default function ScanqrcodeComponent() {
   const [scandata, setScandata] = useState('');
   const [couponecode, setCouponecode] = useState('');
   const { push } = useRouter();
-  const isUT = isUserToken();
-  const isUser = isValideUser();
+  const isUser = isUserToken();
   const userID = getUserID();
   const latInfo = geoLatitude();
   const lonInfo = geoLongitude();
@@ -29,8 +28,8 @@ export default function ScanqrcodeComponent() {
  
  
   useEffect(() => {
-    if(!isUT) { push("/"); return  }
-  }, [isUT]);
+    if(!isUser) { push("/"); return  }
+  }, [isUser]);
 
   useEffect(() => {
       const sdURL = scandata.split("?") || '';

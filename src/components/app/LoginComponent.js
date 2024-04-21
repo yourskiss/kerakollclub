@@ -59,7 +59,7 @@ export default function LoginComponent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const getqrcode = searchParams.get('code');
-  const isUT = isUserToken();
+  const isUser = isUserToken();
   const isCC = isCouponeCode();
  
   const checkboxHandler = () => {
@@ -75,9 +75,11 @@ export default function LoginComponent() {
   
 
   useEffect(() => {
-    if(isUT && !isCC) { router.push("/dashboard"); return }
-    if(isUT && isCC) { router.push("/getcoupone"); return }
-  }, [isUT]);
+    if(isUser && !isCC) { router.push("/dashboard"); return }
+    if(isUser && isCC) { router.push("/getcoupone"); return }
+  }, [isUser]);
+
+ 
 
    useEffect(() => {
     if(Object.keys(mobileError).length === 0 && isMobile)

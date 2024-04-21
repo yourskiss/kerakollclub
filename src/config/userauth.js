@@ -39,29 +39,33 @@ const getUserToken = () => {
 }
  
 const isValideUser = () => {
-    const [profileuseid,setProfileuseid] = useState(0);
-    const [profileusemobile,setProfileusemobile] = useState(0);
     const [userAuth,setUserAuth] = useState(false);
     const isUT = isUserToken();
     const userID = getUserID();
     const userMobile = getUserMobile(); 
 
-        useEffect(() => {
-            if((isUT) && (userID !== undefined || userID !== null || userID !== '') && (userMobile !== undefined || userMobile !== null || userMobile !== ''))
+        //  && (userID !== undefined || userID !== null || userID !== '') && (userMobile !== undefined || userMobile !== null || userMobile !== '')
+            if(!isUT)
             {
               _get("Customer/UserInfo?userid=0&phonenumber="+ userMobile)
               .then((res) => {
-                  // console.log("auth res-", res);
-                  setProfileuseid(res.data.result.userid);
-                  setProfileusemobile(res.data.result.phonenumber);
-              });
-              userID === profileuseid &&  userMobile === profileusemobile ? setUserAuth(true) : setUserAuth(false);
+                  // console.log(res);
+                  if(userID === res.data.result.userid && userMobile === res.data.result.phonenumber)
+                  {
+                    setUserAuth(true);
+                  }
+                  else
+                  {
+                    setUserAuth(false);
+                  }
+              }).catch((err) => {
+                console.log(err);
+              }); 
             }
-          }, [profileuseid, profileusemobile]);
-      
- 
-      // console.log("outside ",userAuth, ", ", userID, "-", profileuseid,", ", userMobile, "-", profileusemobile);
-    
+            else
+            {
+              setUserAuth(true);
+            }
       return userAuth;
 }
 

@@ -3,7 +3,7 @@
 
 import localFont from 'next/font/local';
 const arialmt = localFont({ weight: '500', variable: '--font-arialmt', src: './arialmt.woff2' });
-// const lneue = localFont({ weight: 'bold', variable: '--font-lneue', src: './lneue.woff2' });
+const lneue = localFont({ weight: 'bold', variable: '--font-lneue', src: './lneue.woff2' });
 
 
 import Script from "next/script";

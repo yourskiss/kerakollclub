@@ -13,13 +13,13 @@ import "slick-carousel/slick/slick-theme.css";
 const DashboardComponent = () => {
     
   const { push } = useRouter();
-  const isUT = isUserToken();
+  const isUser =  isUserToken();
   const rewardspoints = TotalrewardpointsComponent();
  
  
   useEffect(() => {
-  if(!isUT) { push("/"); return  }
-  }, [isUT]);
+  if(!isUser) { push("/"); return  }
+  }, [isUser]);
 
 
 
